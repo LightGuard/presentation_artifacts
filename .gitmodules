@@ -1,0 +1,6 @@
+[submodule "JavaOne_2013/asciidoctor-backends"]
+	path = JavaOne_2013/asciidoctor-backends
+	url = https://github.com/asciidoctor/asciidoctor-backends.git
+[submodule "JavaOne_2013/dzslides"]
+	path = JavaOne_2013/dzslides
+	url = https://github.com/mojavelinux/dzslides.git
