@@ -1,11 +1,10 @@
 source "https://rubygems.org"
 
-group :development do
-  gem 'guard'
-  gem 'guard-compass'
-  gem 'guard-shell'
-  gem 'guard-livereload'
-  gem 'tilt'
-  gem 'slim'
-  gem 'guard-asciidoc', :github => 'asciidoctor/guard-asciidoc'
-end
+gem 'guard'
+gem 'guard-compass'
+gem 'guard-shell'
+gem 'guard-livereload'
+gem 'asciidoctor'
+gem 'tilt'
+gem 'slim'
+gem 'guard-asciidoc', :github => 'asciidoctor/guard-asciidoc'
