@@ -1,0 +1,76 @@
+= Building CDI Extensions Outline
+Jason Porter
+2013-09-24
+
+== Purpose
+
+This talk is aimed at teaching people how to create CDI extensions.
+As a slight follow-up it will use and demonstrate some of the Apache DeltaSpike helpers for extension authors.
+It will NOT cover basic ideas of CDI (Interceptors, Injection, Qualifiers, etc.).
+Testing an extension with Arquillian will be mentioned and a brief overview given
+
+== Progression
+
+* Intro to technology
+* What is a Portable Extension?
+* Overview of life-cycle
+* Life-cycle Deep dive
+* Cover DeltaSpike extension author helps
+* Q&A
+
+== What I hope people take away from the talk
+
+* Basics of the life-cycle
+* How to create a Portable Extension
+* How to test
+
+== Outline
+
+* Intro to technology
+** Java EE 6 - JSR 299
+** Java EE 7 - JSR 346
+** What I won't be covering
+* What is a Portable Extension?
+** What is it in concept?
+** Anatomy of a Portable Extension
+*** beans.xml
+*** services file
+*** class which observes a lifecycle event
+* Overview of life-cycle - graphic depicting the life-cycle
+** Application Start
+** Find Extensions
+** BeforeBeanDiscovery
+** Scan Archive
+** ProcessAnnotatedType
+** AfterTypeDiscovery (1.1)
+** ProcessInjectionPoint
+** ProcessInjectionTarget - Abort if definitions errors exist
+** ProcessProducer
+** ProcessBeanAttributes (1.1)
+** ProcessBean
+** ProcessObserverMethod
+** AfterBeanDiscovery - Abort if errors exist
+** AfterDeploymentValidation  - Abort if deployment errors exist
+** Application Runs
+** Application Shutdown started
+** BeforeShutdown
+** Application terminates
+* Life-cycle Deep dive - Slide or two for each life cycle
+** Cover each portion of the life-cycle
+** What can be done at each stage
+** Note changes in CDI 1.1
+** Show example code from DeltaSpike
+* Cover DeltaSpike extension author helps
+** BeanBuilder (https://github.com/apache/deltaspike/blob/master/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/util/bean/BeanBuilder.java)
+** ImmutableBean*
+** WrappingBeanBuilder (https://github.com/apache/deltaspike/blob/master/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/util/bean/WrappingBeanBuilder.java)
+** Context classes (https://github.com/apache/deltaspike/tree/master/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/util/context)
+** AnnotationInstanceProvider (https://github.com/apache/deltaspike/tree/master/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/util/context)
+** Annotateds (https://github.com/apache/deltaspike/commits/master/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/util/Annotateds.java)
+** BeanUtils (https://github.com/apache/deltaspike/blob/master/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/util/BeanUtils.java) - Much is already taken care of in CDI 1.1
+** HierarchyDiscovery (https://github.com/apache/deltaspike/blob/master/deltaspike/core/api/src/main/java/org/apache/deltaspike/core/util/HierarchyDiscovery.java)
+** Basic implementations of the metadata types
+* Q&A
+
+
+

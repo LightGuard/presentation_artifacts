@@ -1,0 +1,337 @@
+= Building CDI Extensions - Lifecycle
+Jason Porter
+:experimental:
+:toc2:
+:sectanchors:
+:idprefix:
+:idseparator: -
+:icons: font
+:source-highlighter: coderay
+
+// tag::content[]
+
+[.fit]
+== Lifecycle image 
+
+image::life-cycle_plain.svg[]
+
+== !
+
+[.statement]
+Lifecycle _Deep Dive_
+
+API docs at http://docs.jboss.org/cdi/api/1.1/
+
+[NOTE]
+[role="speaker"]
+====
+* API
+* Note changes in CDI 1.1
+* Example code
+* All of these have links to the API docs
+* All examples are taken from DeltaSpike
+====
+
+[.topic]
+== BeforeBeanDiscovery
+
+* Add AnnotatedType (deprecated in CDI 1.1)
+* Add interceptor bindings
+* Add qualifiers
+* Add scopes
+* Add stereotypes
+
+[NOTE]
+[role="speaker"]
+====
+This kicks things off, and unless you have some third party library you're using (and don't want to use providers) this is really only useful for adding a new scope.
+
+The only real difference between a pseudo-scope and a normal scope is whether or not a proxy is needed for beans in this scope. Normal = yes, pseudo = no
+==== 
+
++++
+<footer>
+<a href="http://docs.jboss.org/cdi/api/1.1/javax/enterprise/inject/spi/BeforeBeanDiscovery.html">API JavaDoc</a>
+</footer>
++++
+
+[.topic.source]
+== BeforeBeanDiscovery Example
+
+[source,java]
+.ViewScopedExtension.java
+....
+public void addViewScoped(@Observes BeforeBeanDiscovery beforeBeanDiscovery)
+{
+    isActivated = ClassDeactivationUtils.isActivated(getClass());
+
+    if (!isActivated)
+    {
+        return;
+    }
+
+    beforeBeanDiscovery.addScope(ViewScoped.class, true, true);
+}
+....
+
+[.topic]
+== ProcessAnnotatedType 
+
+* Replace AnnotatedType
+* veto
+
+[NOTE]
+[role="speaker"]
+====
+Veto in CDI 1.1 is mostly for vetoing third party classes, because of `@Vetoed`
+====
+
++++
+<footer>
+<a href="http://docs.jboss.org/cdi/api/1.1/javax/enterprise/inject/spi/ProcessAnnotatedType.html">API JavaDoc</a>
+</footer>
++++
+
+[.topic.source]
+== Example
+
+[source,java]
+.NamingConventionAwareMetadataFilter.java
+---- 
+public void ensureNamingConvention(@Observes ProcessAnnotatedType processAnnotatedType)
+{
+    Class<?> beanClass = processAnnotatedType.getAnnotatedType().getJavaClass();
+
+    Named namedAnnotation = beanClass.getAnnotation(Named.class);
+    if (namedAnnotation != null &&
+            namedAnnotation.value().length() > 0 &&
+            Character.isUpperCase(namedAnnotation.value().charAt(0)))
+    {
+        AnnotatedTypeBuilder builder = new AnnotatedTypeBuilder();
+        builder.readFromType(beanClass);
+
+        String beanName = namedAnnotation.value();
+        String newBeanName = beanName.substring(0, 1).toLowerCase() + beanName.substring(1);
+
+        builder.removeFromClass(Named.class)
+                .addToClass(new NamedLiteral(newBeanName));
+
+        processAnnotatedType.setAnnotatedType(builder.create());
+    }
+}
+---- 
+
+[.topic]
+== AfterTypeDiscovery *NEW in CDI 1.1*
+
+* Add AnnotatedType
+* Add / Remove Alternatives
+* Add / Remove Interceptors
+* Add / Remove Decorators
+
++++
+<footer>
+<a href="http://docs.jboss.org/cdi/api/1.1/javax/enterprise/inject/spi/BeforeBeanDiscovery.html">API JavaDoc</a>
+</footer>
++++
+
+[.topic]
+== ProcessInjectionPoint
+
+* Modify an InjectionPoint
+* Add a definition error
+
+[NOTE]
+[role="speaker"]
+====
+In practice this one isn't use that much, at least that I've seen.
+Could be useful for some integration with other JSR 330 implementors.
+==== 
+
++++
+<footer>
+<a href="http://docs.jboss.org/cdi/api/1.1/javax/enterprise/inject/spi/ProcessInjectionPoint.html">API JavaDoc</a>
+</footer>
++++
+
+[.topic]
+== ProcessInjectionTarget
+
+* Modify an InjectionTarget 
+* Add a definition error
+
+[NOTE]
+[role="speaker"]
+====
+Same as the previous step, I haven't seen it used much. 
+The spec has a rough example of decorating every Servlet Injection.
+==== 
+
++++
+<footer>
+<a href="http://docs.jboss.org/cdi/api/1.1/javax/enterprise/inject/spi/ProcessInjectionTarget.html">API JavaDoc</a>
+</footer>
++++
+
+[.topic]
+== ProcessProducer
+
+* Modify a Producer 
+* Add a definition error
+
++++
+<footer>
+<a href="http://docs.jboss.org/cdi/api/1.1/javax/enterprise/inject/spi/ProcessProducer.html">API JavaDoc</a>
+</footer>
++++
+
+[.topic]
+== Example
+
+https://github.com/apache/deltaspike/blob/master/deltaspike/core/impl/src/main/java/org/apache/deltaspike/core/impl/message/MessageBundleExtension.java[MessageBundleExtension.java]
+
+[.topic]
+== ProcessBeanAttributes *NEW in CDI 1.1*
+
+* Modify BeanAttributes
+* Veto
+* Add a definition error
+
+[NOTE]
+[role="speaker"]
+====
+This veto should be used instead of the one in PAT
+====
+
++++
+<footer>
+<a href="http://docs.jboss.org/cdi/api/1.1/javax/enterprise/inject/spi/ProcessBeanAttributes.html">API JavaDoc</a>
+</footer>
++++
+
+[.topic]
+== ProcessBean
+
+* Query information about the Bean
+* Add a definition error
+
++++
+<footer>
+<a href="http://docs.jboss.org/cdi/api/1.1/javax/enterprise/inject/spi/ProcessBean.html">API JavaDoc</a>
+</footer>
++++
+
+[.topic]
+== Example
+
+https://github.com/apache/deltaspike/blob/master/deltaspike/core/impl/src/main/java/org/apache/deltaspike/core/impl/exception/control/extension/ExceptionControlExtension.java[ExceptionControlExtension.java]
+
+[.topic]
+== ProcessObserverMethod
+
+* Query information about an observer
+* Add a definition error
+
++++
+<footer>
+<a href="http://docs.jboss.org/cdi/api/1.1/javax/enterprise/inject/spi/ProcessObserverMethod.html">API JavaDoc</a>
+</footer>
++++
+
+[.topic]
+== AfterBeanDiscovery
+
+* Add a new Bean
+* Add a new Context
+* Add a new observer method
+* Query information about AnnotatedTypes
+
++++
+<footer>
+<a href="http://docs.jboss.org/cdi/api/1.1/javax/enterprise/inject/spi/BeforeBeanDiscovery.html">API JavaDoc</a>
+</footer>
++++
+
+[NOTE]
+[role="speaker"]
+====
+Again, other than 3rd party integration, adding the Context is the the biggest thing here.
+
+In CDI 1.1, instead of implementing `Context`, implement `AlterableContext`, so that beans can be destroyed by the application.
+
+Pull up `Context` and `AlterableContext` in the browser and talk about that.
+
+Adding a context is probably the most difficult of things to do, but it really isn't that hard.
+A `Contextual` used in the `get` methods are either `Bean`, `Decorator`, or `Interceptor`
+==== 
+
+[.topic.source]
+== Example
+
+[source,java]
+.TransactionContextExtension.java
+----
+protected void registerTransactionContext(@Observes AfterBeanDiscovery afterBeanDiscovery)
+{
+  if (!isActivated)
+  {
+      return;
+  }
+
+  TransactionContext transactionContext = new TransactionContext();
+  afterBeanDiscovery.addContext(transactionContext);
+} 
+----
+
+[.topic]
+== AfterDeploymentValidation
+
+* Add a deployment problem
+
++++
+<footer>
+<a href="http://docs.jboss.org/cdi/api/1.1/javax/enterprise/inject/spi/BeforeBeanDiscovery.html">API JavaDoc</a>
+</footer>
++++
+
+[.topic]
+== Example
+
+https://github.com/apache/deltaspike/blob/master/deltaspike/core/impl/src/main/java/org/apache/deltaspike/core/impl/exception/control/extension/ExceptionControlExtension.java[ExceptionControlExtension.java]
+
+[.topic]
+== BeforeShutdown
+
+* Cleanup not done by the container
+
++++
+<footer>
+<a href="http://docs.jboss.org/cdi/api/1.1/javax/enterprise/inject/spi/BeforeShutdown.html">API JavaDoc</a>
+</footer>
++++
+
+[.topic.source]
+== Example
+
+[source,java]
+.MBeanExtension.java
+----
+protected void shutdown(@Observes final BeforeShutdown shutdown) throws Exception
+{
+  if (!isActivated)
+  {
+      return;
+  }
+
+  final MBeanServer mBeanServer = mBeanServer();
+  for (ObjectName objectName : objectNames)
+  {
+      mBeanServer.unregisterMBean(objectName);
+      LOGGER.info("Unregistered MBean " + objectName.getCanonicalName());
+  }
+  objectNames.clear();
+}
+----
+
+// end::content[]
+

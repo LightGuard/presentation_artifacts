@@ -1,0 +1,218 @@
+= Building CDI Extensions
+Jason Porter, @lightguardjp <jporter@redhat.com>
+v1.0, 2013-09-24
+:title: Building CDI Extensions
+:backend: dzslides
+:description: Introduction to building CDI Portable Extensions
+:copyright: CC BY-SA 2.0
+:website: http://cdi-spec.org
+:sectids!:
+:experimental:
+:icons: font
+:source-highlighter: highlightjs
+//:source-highlighter: coderay
+:language: no-highlight
+:caption-off: caption=""
+:title-off: title="", caption=""
+:dzslides-aspect: 16-9
+:imagesdir: images
+:next-label: pass:quotes,attributes[*Next* [icon-caret-right]'{zwsp}'] 
+:dzslides-style: tomorrow
+:dzslides-highlight: tomorrow-night-bright
+:dzslides-transition: fade
+:dzslides-fonts: family=Yanone+Kaffeesatz:400,700,200,300&family=Cedarville+Cursive
+
+[.topic.intro]
+== What I'm *not* talking about
+
+[NOTE]
+[role="speaker"]
+====
+I'm not talking about these aspects of CDI, they've been covered before.
+People should already know about them. 
+I'm happy to go into it more after the session should people like.
+====
+
+== Bits of CDI
+[.scatter]
+* JSR 299 - Java EE 6
+* JSR 346 - Java EE 7 
+* +@Inject+
+* Scopes
+* Alternatives
+* Decorators
+* Qualifiers 
+
+== !
+
+[.statement]
+Portable Extensions
+
+[NOTE]
+[role="speaker"]
+====
+What *is* a portable extension?
+Why are they called portable extensions?
+Are they difficult?
+====
+
+== !
+
+[.middle]
+Extensions allow you to customize the platform for your individual needs.
+
+== !
+
+[.middle]
+Saying they're portable allows them to work with any CDI implementation (Weld, OpenWebBeans, CanDI).
+
+== !
+
+[.statement]
+Anatomy of a Portable Extension
+
+== !
+
+[.statement] 
+Only *3* things
+
+== !
+
+What are they?
+
+[.middle.incremental]
+* beans.xml (optional in CDI 1.1)
+* services file
+* POJO observing one of the CDI lifecycle events
+
+== !
+
+[.statement] 
+Okay, maybe only *2* :)
+
+[.intro]
+== !
+
+[.statement]
+{next-label} +
+CDI Extension Lifecycle
+
+[NOTE]
+[role="speaker"]
+====
+I mentioned about this thing called the life cycle, what is it?
+How does it work with other parts of the server?
+==== 
+
+include::lifecycle.adoc[tags=content]
+
+[.intro]
+== How can DeltaSpike Help
+
+[.statement]
+{next-label} +
+Apache DeltaSpike
+
+== DeltaSpike cont
+
+* What is it?
+* How do I get it?
+* http://deltaspike.org
+
+== !
+
+[.statement]
+How can Apache DeltaSpike help?  
+
+== !
+
+* Source of examples from experts
+* Default implementation for metadata classes
+* Additional helpers
+
+[.topic]
+== Helpers
+
+* BeanUtils
+* HierarchyDiscovery
+* Annotateds
+
+[.topic]
+== Metadata Helpers
+
+* ImmutableBean wrappers
+* Basic Context implementation
+* AnnotatedInstanceProvider
+* WrappingbeanBuilder 
+
+[.small]
+== !
+
+* https://github.com/apache/deltaspike
+* https://git-wip-us.apache.org/repos/asf/deltaspike.git
+
+[.intro]
+== Testing
+
+[.statement]
+{next-label} +
+Testing
+
+== !
+
+[.statement]
+Best way to test: image:arquillian_logo.png[link="http://www.arquillian.org"]
+
+== !
+
+Users of Arquillian:
+
+* Apache DeltaSpike
+* CDI TCK
+* TomEE
+* many, many others
+
+== !
+
+Arquillian allows you to test inside the actual container
+
+*No mocks*, *stubs*, or *embedded container*
+
+Deploy as much or as little of your application as needed
+
+== !
+
+[.statement]
+Example
+
+[.topic.ending]
+== Recap
+
+== !
+
+[.statement]
+Extensions allow you to customize the platform. 
+
+== !
+
+[.statement]
+CDI has a rich set of observable lifecycle events making extensions possible.
+
+== !
+
+[.statement]
+Apache DeltaSpike, besides having a vast set of extensions, contains many helpers for extension authors.
+
+== !
+
+[.statement]
+Finish off with testing inside your container with Arquillian
+
+[.topic.ending]
+== *Discussion*
+
+[.topic.ending, hrole="name"]
+== Jason Porter
+
+[.footer] 
+[icon-twitter]'{zwsp}' @lightguardjp
