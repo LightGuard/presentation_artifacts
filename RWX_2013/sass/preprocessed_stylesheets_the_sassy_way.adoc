@@ -1,0 +1,1000 @@
+= Preprocessed Stylesheets the Sassy Way
+Jason Porter, @lightguardjp 
+v1.0, 2013-12-03
+:title: Preprocessed Stylesheets the Sassy Way
+:backend: dzslides
+:description: Introduction to preprocessed stylesheets using sass and compass
+:copyright: CC BY-SA 2.0
+:sectids!:
+:experimental:
+:icons: font
+:source-highlighter: highlightjs
+:highlightjs-theme: ir_black
+//:source-highlighter: prettify
+:caption-off: caption=""
+:title-off: title="", caption=""
+:dzslides-aspect: 16-9
+:imagesdir: images
+:dzslides-style: sassy
+//:dzslides-highlight: asciidoctor
+:dzslides-transition: fade
+:dzslides-fonts: family=Dosis:400,700|Bad+Script|Architects+Daughter
+
+[.topic.recap.final]
+== THANK YOU
+
+[.middle]
+* *Brandon Mathis* for some content 
+* http://brandonmathis.com/ 
+* [icon-twitter]'{zwsp}' @imathis 
+
+[.intro.alt.topic]
+== CSS today
+
+== !
+
+image::css-is-awesome-mug.jpg[]
+
+== !
+
+[.middle]
+image::CSS3.png[CSS3, 35%]
+
+[.intro.alt.topic]
+== CSS can be *difficult* 
+
+== !
+
+[.scatter]
+* It grows
+* There's no logic
+* Repetition
+* Hard to remember
+* No variables
+* No Math
+
+[.source]
+== !
+
+[source,css]
+.css
+----
+@media screen and (max-width: 480px) 
+{
+    h3 {
+      font-size: 2rem; 
+    } 
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: "proxima-nova-soft", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 100;
+  line-height: 1.5; 
+} 
+h3 {
+  font-size: 3rem;
+  font-weight: 800; 
+} 
+----
+
+[.topic.source]
+== Not DRY, isolated, intent?
+
+[.pull-left]
+image:zounds.png[zounds, 80%]
+
+[source,css]
+----
+.msg { padding: 24px; }
+.msg h3 {
+  padding: 24px;
+  margin: -24px -24px 0;
+}
+----
+
+[.topic.recap.final]
+== Wat??
+
+image::Rarity_and_Pinkie_Wat_mud.png[Wat?, 100%]
+
+[.topic.intro]
+== There are better ways
+
+== Sass to the rescue
+
+image:sass-logo.png[]
+
+== !
+
+"Sass extends CSS3 with variables, math, mixins &
+more. But at its core, Sass is a layer of *empathy* between the
+designer and the stylesheets."
+-- Brandon Mathis
+
+[.intro.alt.topic.source]
+== What sass looks like
+
+[.source]
+== !
+
+[source,scss]
+.scss
+----
+article {
+  margin-bottom: 2em;
+  .entry-content {
+    border-top: 1px solid $grey;
+  }
+}
+----
+
+[source,sass]
+.sass
+----
+article 
+  margin-bottom: 2em
+  .entry-content 
+    border-top: 1px solid $grey
+----
+
+[.intro.topic]
+== Variables
+
+== !
+
+[.scatter.incremental]
+* Colors, numbers, or text
+* Understands units (em, rem, px, etc)
+* easy -- $name: value;
+
+[.topic.source]
+== Variables
+
+[source,scss]
+.scss
+----
+$link-color: blue;
+$link-hover: red;
+
+a {
+  color: $link-color;
+  &:hover { color: $link-hover; }
+}
+----
+
+[source,css]
+.css
+----
+a { color: blue; }
+a:hover { color: red; }
+----
+
+== !
+
+[.statement]
+We now have *context*
+
+[.topic.source]
+== DRY, relationships, intent
+
+[.pull-right]
+image:zounds.png[zounds, 80%]
+
+[source,css]
+----
+$msg-pad: 24px;
+.msg {
+  padding:$msg-pad;
+  h3 {
+    padding:$msg-pad;
+    margin:(-$msg-pad)
+           (-$msg-pad) 0; 
+  }
+}
+----
+
+[.intro.alt.topic]
+== Logic
+
+== !
+
+[.middle]
+* < > <= => == !=
+* @if, @else, @else if
+* and, or
+
+[.topic.source]
+== Relational operators (for numbers)
+
+[source,scss]
+.scss
+----
+1  < 20  // true
+10 <= 20 // true
+4  > 1   // true
+4  >= 1  // true
+5  > 5   // false
+----
+
+[.topic.source]
+== Comparison operators for everything
+
+[source,scss]
+.scss
+----
+1 + 1 == 2    // true
+small != big  // true
+#000 == black // true
+----
+
+[source,scss]
+.scss
+----
+red == #f00
+red == #ff0000
+red == rgb(255, 0, 0)
+red == rgba(255, 0, 0, 1.0)
+red == hsl(0deg, 100%, 100%)
+red == hsla(0deg, 100%, 100%, 1)
+----
+
+[.topic.source]
+== Conditionals
+
+[source,scss]
+.scss
+----
+$theme: ocean;
+div {
+  @if $theme == dusty {
+    background: #c6bba9;
+    color: $color;
+  } @else if $theme == ocean {
+    background: blue;
+    color: white;
+  }
+}
+----
+
+[.topic.source]
+== Ternary 
+
+[source,scss]
+.scss
+----
+$main-bg: #000;
+.main {
+  color: if($main-bg == black, #fff, #000);
+}
+----
+
+[.intro.topic]
+== Math
+
+== !
+
+[.expression]
+Exactly as you'd expect
+
+[.source]
+== !
+
+[source,css]
+.scss
+----
+1em + 1em;  // 2em
+1em - 1em;  // 0em
+1in + 72pt; // 2in
+6px * 4;    // 24px
+18  % 5;    // 3
+----
+
+[source,scss]
+.scss
+----
+$container : 960px;
+$main : 680px;
+$gutter : 30px;
+
+#sidebar {
+  width: $container - $main - $gutter;
+}
+----
+
+[source,css]
+.css
+----
+#sidebar { 
+  width: 250px;
+}
+----
+
+== !
+
+[.statement]
+*except* for division
+
+[.source]
+== !
+
+[source,css]
+.scss
+----
+font  : 18px / 1.45em; // 18px/1.45em
+font  : (20px / 5);    // 4px
+font  : 20px / 5 + 1;  // 5px
+font  : $base / 5;     // 4px
+$size : 20px / 5;      // 4px
+----
+
+[.topic.source]
+== Number Functions
+
+[source,scss]
+.scss
+----
+percentage(13/25) // 52%
+round(2.4)        // 2
+ceil(2.2)         // 3
+floor(2.6)        // 2
+abs(-24)          // 24
+----
+
+[.intro.alt.topic]
+== Looping
+
+[.topic.source]
+== @for
+
+[source,css]
+.scss
+----
+@for $level from 0 to 5 {
+  .tag-#{$level + 1} {
+    font-size: .7em + ($level * .5em);
+  }
+}
+----
+
+[source,css]
+.css
+----
+.tag-1 { font-size: 0.7em; }
+.tag-2 { font-size: 1.2em; }
+.tag-3 { font-size: 1.7em; }
+.tag-4 { font-size: 2.2em; }
+.tag-5 { font-size: 2.7em; }
+----
+
+[.topic.source]
+== @while
+
+[source,scss]
+.scss
+----
+$level: 0;
+
+@while $level < 5 {
+  .tag-#{$level + 1} {
+    font-size: .7em + ($level * .5em);
+  }
+  $level: $level + 1;
+}
+----
+
+[source,css]
+.css
+----
+.tag-1 { font-size: 0.7em; }
+.tag-2 { font-size: 1.2em; }
+.tag-3 { font-size: 1.7em; }
+.tag-4 { font-size: 2.2em; }
+.tag-5 { font-size: 2.7em; }
+----
+
+[.topic.source]
+== @each
+
+[source,scss]
+.scss
+----
+$animals: puma, crab, emu, duck;
+
+@each $animal in $animals {
+  .#{$animal}-icon {
+    background: url('/images/#{$animal}.png');
+  }
+}
+----
+
+[source,css]
+.css
+----
+.puma-icon { background: url('/images/puma.png'); }
+.crab-icon { background: url('/images/crab.png'); }
+.emu-icon { background: url('/images/emu.png'); }
+.duck-icon { background: url('/images/duck.png'); }
+----
+
+[.intro.topic]
+== Nesting
+
+[.source]
+== ! 
+
+[source,scss]
+.scss
+----
+article {
+  border-top: 1px dashed #eee;
+  header { margin-bottom: 1.5em; }
+}
+----
+
+[source,css]
+.css
+----
+CSS
+article { border-top: 1px dashed #eee; }
+article header { margin-bottom: 1.5em; }
+----
+
+[.source]
+== Nesting
+
+[source,scss]
+.scss
+----
+article {
+  header, section { margin-bottom: 1.5em; }
+} 
+----
+
+[source,css]
+.css
+----
+article header, article section {
+  margin-bottom: 1.5em;
+} 
+----
+
+[.topic.source]
+== Nesting (Symbol Selectors)
+
+[source,scss]
+.scss
+----
+article {
+  > h2 { border-top: 1px dashed #eee }
+  ~ article { padding-top: 1.5em }
+  + footer { margin-top: 0 }
+  * { color: #000 }
+}
+----
+
+[source,css]
+.css
+----
+article > h2 { border-top:1px dashed #eee }
+article ~ article { padding-top: 1.5em }
+article + footer { margin-top: 0 }
+article * { color: #000 }
+----
+
+[.topic.source]
+== Parent Selector
+
+[source,scss]
+.scss
+----
+a {
+  color: blue;
+  &:hover { color: red } <1>
+  display: inline-block;
+  line-height: 1.8em;
+}
+----
+<1> selector: &amp;
+
+[source,css]
+.css
+----
+a { color: blue; display: inline-block; line-height: 1.8em; }
+a:hover { color: red } <1>
+----
+<1> output 
+
+[.topic.intro.alt]
+== Mixins
+
+== !
+
+[.middle]
+* Reusable chunks of css
+* Doesn't output anything in not used
+* May contain arguments
+
+[.topic.source]
+== Basic Mixin
+
+[source,scss]
+.scss
+----
+@mixin hover-link {
+  text-decoration: none;
+  &:hover { text-decoration: underline; }
+} 
+nav a { @include hover-link; }
+----
+
+[source,css]
+.css
+----
+nav a { text-decoration: none; }
+nav a:hover { text-decoration: underline; }
+----
+
+[.topic.source]
+== Mixin with args
+
+[source,scss]
+.scss
+----
+@mixin border-radius($amount) {
+  border-radius: $amount;
+  -webkit-border-radius: $amount;
+  -moz-border-radius: $amount;
+}
+.msg { @include border-radius(5px); }
+----
+
+[source,css]
+.css
+----
+.msg {
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
+----
+
+[.topic.source]
+== Defaults and named arguments 
+
+[source,scss]
+.scss
+----
+@mixin link-color($text:blue, $hover:red) {
+  color: $text;
+  &:hover { color: $hover; }
+}
+a {
+  @include link-colors($hover: green);
+}
+----
+
+[source,css]
+.css
+----
+a { color: blue; }
+a:hover { green; }
+----
+
+[.topic.source]
+== Mixins and blocks
+
+[source,scss]
+.scss
+----
+@mixin apply-to-ie6-only {
+  * html {
+    @content;
+  }
+}
+@include apply-to-ie6-only {
+  #logo {
+    background-image: url(/logo.gif);
+  }
+}
+----
+
+[source,css]
+.css
+----
+* html #logo {
+  background-image: url(/logo.gif);
+}
+----
+
+[.topic.intro]
+== Importing
+
+== !
+
+[.middle]
+* extends CSS `@import`
+* by default looks for sass file
+* may fall back to css import -- see docs
+* multiples on one statement
+
+[.topic.source]
+== Partials 
+
+[source,text]
+.source tree
+----
++--- style
+|         _partials
+|               _grid.scss
+|               _typography.scss
+|               _nav.scss
+|         style.scss
+----
+
+[source,scss]
+.style.scss
+----
+@import "_partials/grid", "_partials/typeograph", "_partials/nav"
+----
+
+[source,text]
+.output tree
+----
++--- style
+|         style.css
+----
+
+[.topic.intro.alt]
+== Colors
+
+[.topic.source]
+== RGBA function
+
+[source,scss]
+.scss
+----
+a { color: rgba(blue, .75) }
+p { background: rgba(#ffa, .25) }
+----
+
+[source,css]
+.css
+----
+a { color: rgba(255, 255, 170, 0.25) }
+p { background: rgba(255, 255, 170, 0.25) }
+----
+
+[.topic.source]
+== Inspecting colors
+[source,scss]
+.scss
+----
+$color: red;
+
+hue($color); // 0deg
+saturation($color); // 100%
+lightness($color); // 50%
+
+red($color); // 100
+green($color); // 0
+blue($color); // 0
+
+alpha($color); // 100 
+----
+
+[.source.topic]
+== Manipulating colors
+
+++++
+<div class="pull-left">
+  <div class="invert">
+    <div class="function">invert(<span class="blue">blue</span>)</div>
+    <div class="example">
+      <div class="block blue pull-left"></div>
+      <div class="block yellow pull-left"></div>
+    </div>
+  </div>
+  <div class="mix">
+    <div class="function">mix(<span class="red">red</span>, <span class="yellow">yellow</span>)</div>
+    <div class="example">
+      <div class="small-block pull-left red"></div>
+      <div class="small-block pull-left yellow"></div>
+      <div class="block orange wide-block"></div>
+    </div>
+  </div>
+  <div class="grayscale">
+    <div class="function">grayscale(<span class="yellow">yellow</span>)</div>
+    <div class="example">
+      <div class="block yellow pull-left"></div>
+      <div class="block grey pull-left"></div>
+    </div>
+  </div>
+</div>
+<div class="pull-left" style="margin-left:20px">
+  <div class="complement">
+    <div class="function">complement(<span class="yellow">#6cf620</span>)</div>
+    <div class="example">
+      <div class="block lime pull-left"></div>
+      <div class="block magenta pull-left"></div>
+    </div>
+  </div>
+  <div class="mix">
+    <div class="function">mix(<span class="red">red</span>, <span class="yellow">yellow</span>, 30)</div>
+    <div class="example">
+      <div class="small-block pull-left red"></div>
+      <div class="small-block pull-left yellow"></div>
+      <div class="block orange30 wide-block"></div>
+    </div>
+  </div>
+</div>
+<div class="pull-left" style="margin-left: 40px">
+  <div class="adjust-hue">
+    <div class="function">adjust-hue(<span style="color:#77a7f9">#77a7f9</span>, 90)</div>
+    <div class="example">
+      <div class="block pull-left" style="background:#77a7f9"></div>
+      <div class="block pull-left" style="background:#f977e8"></div>
+    </div>
+  </div>
+  <div class="saturate">
+    <div class="function">saturate(<span style="color:#9b8a60">#9b8a60</span>, 50%)</div>
+    <div class="example">
+      <div class="block pull-left" style="background-color:#9b8a60"></div>
+      <div class="block pull-left" style="background-color:#d9a621"></div>
+    </div>
+  </div>
+  <div class="darken">
+    <div class="function">darken(<span style="color:#6cf620">#6cf620</span>, 30%)</div>
+    <div class="example">
+      <div class="block lime pull-left"></div>
+      <div class="block pull-left" style="background:#2e7805"></div>
+    </div>
+  </div>
+  <div class="fade-in">
+    <div class="function">fade-in(<span style="color:rgba(255, 170, 187, 0.5)">rgba(#fab,.5)</span>, .5)</div>
+    <div class="example">
+      <div class="block pull-left" style="background:rgba(255, 170, 187, 0.5)"></div>
+      <div class="block pull-left" style="background:#fab"></div>
+    </div>
+  </div>
+</div>
+<div class="pull-left" style="margin-left:20px">
+  <div class="adjust-hue">
+    <div class="function">adjust-hue(<span style="color:#77a7f9">#77a7f9</span>, -90)</div>
+    <div class="example">
+      <div class="block pull-left" style="background:#77a7f9"></div>
+      <div class="block pull-left" style="background:#77f988"></div>
+    </div>
+  </div>
+  <div class="desaturate">
+    <div class="function">desaturate(<span style="color:#d9a621">#d9a621</span>, 50%)</div>
+    <div class="example">
+      <div class="block pull-left" style="background-color:#d9a621"></div>
+      <div class="block pull-left" style="background-color:#9b8a60"></div>
+    </div>
+  </div>
+  <div class="lighten">
+    <div class="function">lighten(<span style="color:#2e7805">#2e7805</span>, 30%)</div>
+    <div class="example">
+      <div class="block pull-left" style="background:#2e7805"></div>
+      <div class="block lime pull-left"></div>
+    </div>
+  </div>
+  <div class="fade-out">
+    <div class="function">fade-out(<span style="color:#fab">#fab</span>, .5)</div>
+    <div class="example">
+      <div class="block pull-left" style="background:#fab"></div>
+      <div class="block pull-left" style="background:rgba(255, 170, 187, 0.5)"></div>
+    </div>
+  </div>
+</div>
+++++
+
+[.intro.topic]
+== Functions
+
+[.source]
+== !
+
+[source,scss]
+.scss
+----
+@function pxem($px, $context: 16px) {
+  @return ($px / $context) * 1em;
+}
+
+article h2 { font-size: pxem(45px); }
+----
+
+[source,css]
+.css
+----
+article h2 { font-size: 2.813em; }
+----
+
+[.topic.source]
+== Functions in practice 
+
+[source,scss]
+.scss
+----
+@function text-contrast($bg,
+  $light:#fff, $dark:#000) {
+  $darkbg:lightness($bg) < lightness(gray);
+  @return if($darkbg, $light, $dark);
+}
+@mixin easy-button($bg){
+  color: text-contrast($bg); 
+  background: linear-gradient(
+  lighten($bg, 8), darken($bg, 8));
+}
+button { @include easy-button(blue); }
+---- 
+
+[.intro.topic]
+== Debugging
+
+== !
+
+[.expression]
+Use the Source [maps]
+
+== !
+
+[.middle]
+* Must use 3.3.0 (currently at RC 2)
+* `--sourcemap`
+* Web-kit browsers
+* FireSass in Firefox
+
+== Compass
+
+[.middle]
+image::compass-logo.png[] 
+
+== !
+
+[.expression]
+What do we get?
+
+== !
+
+[.scatter]
+* Mixin library
+* Sass functions
+* Extensions
+* Environment awareness
+
+[.topic.source]
+== Helper Functions
+
+* adjust-lightness, scale-lightness
+* adjust-saturation, scale-saturation
+* image-url
+* image-height
+* image-width
+* inline-image
+* font-url
+
+[.topic.source]
+== Helper Functions (cont)
+
+* inline-font-files
+* pi
+* sin
+* cos
+* tan
+* more...
+
+[.source.topic]
+== Helper functions in practice
+
+[source,scss]
+.scss
+----
+header {
+  background: image-url('hbg.png');
+  h1 { 
+    width: image-width('logo.png');
+    height: image-height('logo.png');
+    background: inline-image('logo.png')
+  }
+}
+----
+
+[source,css]
+.css
+----
+header {
+  background: url('/images/hbg.png?1351...');
+}
+header h1 { 
+  width: 220px; height: 100px;
+  background: url('data:image/png;base64...
+}
+----
+
+[.topic]
+== Compass Mixins
+
+[.scatter]
+* General Utilities
+* Element Styles
+* Design Patters
+* CSS3
+
+[.topic.source]
+== CSS3 Mixins
+
+[source,scss]
+.scss
+----
+.msg {
+  @include background(linear-gradient(#fff, #eee));
+  @include border-radius(5px);
+}
+----
+
+[source,css]
+.css
+----
+.msg {
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%,
+  color-stop(0%, #ffffff), color-stop(100%, #eeeeee));
+  background: -webkit-linear-gradient(#ffffff, #eeeeee);
+  background: -moz-linear-gradient(#ffffff, #eeeeee);
+  background: -ms-linear-gradient(#ffffff, #eeeeee);
+  background: linear-gradient(#ffffff, #eeeeee);
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px; 
+}
+----
+
+[.topic]
+== Sprites
+
+* pngs
+* Based on image name
+* Does all the work for you
+
+[.topic.source]
+== Sprites in Action
+
+[source,scss]
+.scss
+----
+@import "compass/utilities/sprites";
+@import "my-icons/*.png";
+@include all-my-icons-sprites;
+----
+
+[source,css]
+.css
+----
+.my-icons-sprite,
+.my-icons-delete,
+.my-icons-edit,
+.my-icons-new,
+.my-icons-save   { background: url('/images/my-icons-s34fe0604ab.png') no-repeat; }
+
+.my-icons-delete { background-position: 0 0; }
+.my-icons-edit   { background-position: 0 -32px; }
+.my-icons-new    { background-position: 0 -64px; }
+.my-icons-save   { background-position: 0 -96px; }
+----
+
+[.topic.ending]
+== Q & A
+
+[.topic]
+== Resources
+
+* http://sass-lang.com
+* http://compass-style.org
+
+[.topic.ending, hrole="name"]
+== Jason Porter
+
+[.footer] 
+[icon-twitter]'{zwsp}' @SassCSS - [icon-twitter]'{zwsp}' @lightguardjp
+

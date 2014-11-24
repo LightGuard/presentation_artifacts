@@ -1,0 +1,117 @@
+= Ol' Blue Eyes
+Jason Porter <jporter@redhat.com>
+v1.0 2013-12-06
+
+== OpenShift Setup
+
+sign up (openshift.redhat.com)
+
+  gem install rhc bundler
+
+=== Create the app
+
+  $ rhc setup
+  $ rhc app create <name> ruby-1.9
+
+  $ git clone <git url> 
+
+== Setting up the App
+
+=== Rackup
+
+[source,ruby]
+.config.ru
+----
+require './app'
+
+run RichWeb::MyApp
+----
+
+=== Gemfile
+
+[source,ruby]
+.Gemfile
+----
+source 'https://rubygems.org'
+
+gem 'sinatra', '~> 1.4.3'
+gem 'sinatra-contrib', '~> 1.4'
+gem 'slim', '~> 2.0'
+----
+
+  bundle install
+
+[source, ruby]
+.app.rb
+----
+require 'sinatra/base'
+
+module RichWeb
+  class MyApp < Sinatra::Base
+    get '/' do
+      'Weclome to The Rich Web Experience!!'
+    end
+  end
+end
+----
+
+  git commit -a -m 'Message'
+
+  git push origin/master
+
+== Testing
+
+=== Add needed gems for testing
+
+[source,ruby]
+.Gemfile
+----
+gem 'rspec'
+gem 'rack-test'
+----
+
+  bundle install
+
+==== Setup rspec
+
+  mkdir spec
+
+[source,ruby]
+.spec/spec_helper.rb
+----
+require 'rspec'
+require 'rack/test'
+require File.expand_path '../../app', __FILE__
+
+RSpec.configure do |config|
+  config.include Rack::Test::Methods 
+
+  def app
+    RichWeb::MyApp
+  end
+end 
+----
+
+=== Write a test
+
+[source,ruby]
+.spec/app.rb
+----
+require 'spec_helper'
+
+describe RichWeb::MyApp do
+  it 'says hello' do
+    get '/'
+    expect(last_response).to be_ok
+    expect(last_response.body).to eq('Weclome to The Rich Web Experience!!')
+  end
+end 
+----
+
+  rspec -cf d
+
+== Resources
+
+* http://www.sinatrarb.com
+* http://recipes.sinatrarb.com/
+

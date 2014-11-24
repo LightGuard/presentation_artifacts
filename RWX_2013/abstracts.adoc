@@ -1,0 +1,20 @@
+== Preprocessed Stylesheets, the Sassy Way 
+
+Have you ever wished you could write CSS the same way you write the rest of your application? Not having conditionals, functions, math, or an easy way to modularize your CSS files wears quickly. There's a solution to all of that, and it's been around since 2006!
+
+CSS preprocessors have grown in popularity recently with CSS frameworks such as Twitter Bootstrap, ZURB Foundation, blueprint, and others. What exactly do preprocessors bring to the table? Why should I use one?
+
+Come explore Sass, a CSS preprocessor started back in 2006 and still going strong! We'll look at syntax, extensions, Compass, benefits and debugging.
+
+== Building CDI Extensions, A Primer
+
+You’ve heard about Contexts and Dependency Injection (CDI) and the extensibility of Java EE 6. You may have also looked at Seam 3 or MyFaces CODI. You've seen enough to pique your curiosity. This session will sate that curiosity and give you enough information to build great extensions for your application and business. 
+
+The presentation covers creating extensions in Java EE 6 and shows how using Apache DeltaSpike will ease some of the work.
+
+== RESTful applications with Ol' Blue Eyes
+
+You want to build a restful service, but JAX-RS can be complicated, and Java hosting isn't cheap. What other options are there? Let's explore Sinatra, a Ruby web framework that makes RESTful services a breeze to create! 
+
+Of course you want to test it as well, we have that covered too, using rspec and Rack::Test. Lastly we'll need somewhere to deploy it, we'll use OpenShift. A RESTful application created, tested and deployed all before you finish your martini!
+

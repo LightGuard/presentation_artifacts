@@ -1,0 +1,29 @@
+= 2014 RWX Ideas
+Jason Porter
+2014-08-28
+
+== Pay it Forward: Open Source
+
+With the recent vulnerabilities discovered in Open Source projects, notable the HeartBleed bug, how can you give back to Open Source? Maybe you're not a developer, too difficult to get started coding? Don't worry, there's always other ways to contribute to Open Source besides just the code! 
+
+Come learn the different ways to contribute and make a choice to better the Open Source software you currently use!
+
+== Java Persistence API
+
+Still not sure about JPA? Or maybe you've been using it for a while already. Refreshers are always good to have! We're all at different skill levels, but this presentation looks to have something for everyone. 
+
+Why shouldn't I always use a List for a collection? Should I use a ManyToMany or a OneToMany? How should I do this dynamic query with the Criteria API? Learn some tips and tricks from the Expert Group Members, implementors and power users.  We'll cover some advanced use cases, some gotchas, and some solutions for success.
+
+== Building Communities
+
+Open Source is about building a community of developers and users around a project willing to cooperate, exchange ideas and provide peer review. Participating in the project provides mutual benefit to all parties, including better software, skill improvement, respect, and being a member of a group of peers. But how does it happen? What motivates people to join your project? How do you grow the community? 
+
+This will be more a discussion format, different than most other presentations at RWX. Come learn what myself and others have learned about building communities! Everyone is welcome to share and benefit
+
+== Preprocessed Stylesheets, the Sassy Way
+
+Have you ever wished you could write CSS the same way you write the rest of your application? Not having conditionals, functions, math, or an easy way to modularize your CSS files wears quickly. There's a solution to all of that, and it's been around since 2006!
+
+CSS preprocessors have grown in popularity recently with CSS frameworks such as Twitter Bootstrap, ZURB Foundation, blueprint, and others. What exactly do preprocessors bring to the table? Why should I use one?
+
+Come explore Sass, a CSS preprocessor started back in 2006 and still going strong! We'll look at syntax, extensions, Compass, benefits and debugging.
