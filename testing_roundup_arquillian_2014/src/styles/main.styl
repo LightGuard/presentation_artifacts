@@ -1,0 +1,63 @@
+// New to Stylus? Check out http://learnboost.github.io/stylus
+// Use modern CSS thanks to Autoprefixer: https://github.com/ai/autoprefixer
+
+// Import CSS from "node_modules" and "bower_components"
+// thanks to Stylus' "import css" and "paths" options
+
+@import 'prism/themes/prism-okaidia.css'
+// Check out "bower_components/prism/themes/" for available themes
+
+body {
+  background: url(../images/crab_nebula.jpg) top no-repeat;
+  color: white;
+  font-family: Marvel;
+}
+
+h2 {
+  color: #f7490f;
+  font-size: 2.5em;
+}
+
+h3 {
+  color: #a4ff5c;
+}
+
+b {
+  color: #a4ff5c;
+  font-weight: 700;
+  font-size: 1.5em;
+}
+
+a {
+  color: #f7490f;
+}
+
+.bespoke-slide {
+  background: none;
+}
+.bespoke-active {
+  background: rgba(0,0,0,0.8);
+  border-radius: 1em;
+}
+
+.principle {
+  h2 {
+    z-index: 10;
+  }
+  h3 {
+    z-index: 11;
+    font-size:em;
+  }
+  h1 {
+    font-family: "Oswald";
+    font-size: 200px;
+    z-index: 1;
+    position: relative;
+    top: .35em;
+    left: .5em;
+    clip: none;
+    b {
+      color: #3d2254 !important;
+    }
+  }
+}

@@ -1,0 +1,243 @@
+= Growing an OSS Project by Turning Followers into Leaders =
+Jason Porter <jporter@redhat.com>
+November 2012: Rich Web Experience
+
+== A little about me ==
+
+Aside from the bio:
+
+* Father of four
+  ** 2 girls 2 boys, oldest is six, no twins
+* Enjoys helping others
+  ** StackOverflow, JBoss forums, irc, etc
+* Is passionate about Open Source (if you couldn't tell)
+
+@lightguardjp, Google+, Facebook, LinkedIn
+
+== This Presentation ==
+
+* Discussion
+  ** Not a typical lecture, I want this to be interactive
+  ** Feel free to ask questions whenever
+  ** Probably use the flip paper
+  ** Do my best to write legibly
+  ** Share experiences
+* New ideas
+  ** I hope this sparks new ideas for all of us
+  ** Please share as they come
+* Application in a standard work place
+  ** Why should this only be applied to OSS?
+
+== A little about you ==
+
+* Who is involved in an OSS community?
+* Who wants to be involved in an OSS community?
+* Who thinks this is applicable to regular workplace?
+
+== Case Studies ==
+
+=== Seam 3 ===
+
+* Started early 2009
+* lulled for about a year
+* EXPLODED late 2010 / early 2011 - 19 modules
+  ** Moved to GitHub
+  ** 19 modules
+  ** Around 26 active contributors
+    *** World wide -- USA, UK, Eastern & Western Europe, Australia, 
+  ** I joined in October 2010
+* Ultimately grow too fast, we weren't prepared
+  ** Also had competing initiatives among core developers (Forge, Arquillian, 
+     RichFaces, etc)
+
+=== Arquillian ===
+
+* Initially started as CDI test suite around 2008 / 2009
+* 106 contributors (various levels of activity)
+  ** Actually out of date now 113 (yesterday)
+  ** World wide -- USA, UK, Eastern and Western Europe, China, India, 
+     Australia, Japan, Brazil, Canada
+* More than 50 modules
+* Major exposure through Seam 3, JavaOne, Devoxx etc.
+* Still growing and thriving
+  ** New things being added all the time, new module / feature added just two 
+     weeks ago at Devoxx
+
+=== Forge ===
+
+* Started late 2010
+* 26 modules / plugins
+  ** Mostly focused on Java EE capabilities, some Spring,
+     also scaffolding
+* ~ 40 contributors (various levels of activity) 
+  ** USA, Eastern & Western Europe, South America, Norway
+
+== Factors that motivate people to join a project ==
+
+=== Solve a problem ===
+
+* We're using project X and we found a bug, here's a patch
+  ** Probably the most common
+  ** Can be fleeting
+  ** Any kind of bug -- code, docs, build, etc.
+  ** Also doesn't always result in a patch
+* We have a feature and can't keep patching releases,
+  here's a new feature you can add
+  ** Probably the easiest kinds of contributors to pull in
+    ** Already familiar with the build, the code, etc.  
+
+=== Working with Others on the Project ===
+
+==== Working with idols ====
+
+* I really like Jill Programmer, I think he rocks! I want to work with him
+  ** This is a large part of my motivation 
+
+==== Working with old friends ====
+
+* Hey, I remember Jeff! It's been a while but it looks like he has a new
+  project he's working on. I'd like to work with him again.
+  ** Lots of people start creating OSS projects, you never know what 
+     you'll find
+
+=== Exposure ===
+
+==== Resume ====
+
+* OSS always looks good on a resume
+  ** Rails
+  ** Hibernate
+  ** grails
+  ** NoSQL
+  ** Apache projects
+* Often buzzwords employers / recruiters seek
+
+==== Landing a job ====
+
+* Working for a company doing OSS: Red Hat, IBM, VMWare, etc
+* Examples from Seam / Forge (Brian, Me, George, Gunnar, Ken, etc)
+
+=== Growing skills ===
+
+* Working in a distributed team
+  ** Certainly different challenges here
+  ** Often better communication skills developed
+  ** Motivation
+* Learning about a technology (specs, technology group, etc)
+  ** New ways of solving problems
+  ** Different problems to solve
+* Learning from more senior developers
+  ** Coding standards
+  ** Relevancy of technique
+  ** New ways of solving problems
+* Real World experience during school years
+  ** GSOC probably the largest example
+
+=== Others ===
+
+* Ideas you have we haven't discussed
+
+== Growing the community ==
+
+=== Make people feel welcome ===
+
+No one wants to be somewhere they're not wanted
+
+* Biggest part
+
+* Be kind
+  ** Should go without saying, unfortunately, not always the case
+* Leave your ego at the door
+  ** If you want your project to be more than just you, check your ego
+
+=== Spreading the word ===
+
+* Web site
+  ** Hosted for free on GitHub, SourceForge  or other code repos
+* Social networks
+  ** Carve a space on G+ or twitter
+* Word of mouth
+  ** Part of the above, also email, blogs, etc.
+* In short marketing
+
+==== Examples ====
+
+* http://www.seamframework.org
+* http://www.arquillian.org
+* http://www.jboss.org/jdf
+* http://forge.jboss.org
+
+=== Removing barriers of entry ===
+
+==== DVSC ====
+
+* Git
+* hg
+* GitHub
+* BitBucket
+
+==== Documentation ==== 
+
+* For the project -- Can't grow a community if no one uses your project
+  ** Getting started
+  ** Use cases
+* Contributing
+  ** Source / documentation - conventions, style, tools
+  ** Creating issues - expectations, location, notifications
+* Localized if possible
+
+==== Issue tracker ====
+
+* JIRA
+* GitHub / BitBucket tracker
+
+* Workflow
+  ** Easy to use
+  ** VCS integration
+* Labels
+  ** Something denoting great starting places
+  ** Specific parts, code, module, documentation, test, etc
+
+=== Honestly and transparency ===
+
+* These are corner stones of great projects
+* Part of making people feel welcome
+
+* Public meetings and notes
+* Open Mailing lists / Forums
+
+// Use Seam and Forge as examples
+
+== Turning all These Users into Leaders ==
+
+=== Three keys ===
+
+==== Viewing others as what you want them to be ====
+
+* If all you see your users as beta testers and documentation authors 
+  that's all they every will be
+* See all users as contributors, treat them that way -- as equals
+  ** Some may not take the plunge but that's okay
+
+* How you view your community largely dictates how you will treat them
+
+====  Empowering people to get there ==== 
+
+* Mostly the same as what it takes to attract people
+
+* Don't be afraid to let go of some power, after all, you trust these people
+
+====  Recognizing people ====
+
+* People want to be recognized for a job well done
+* Spotlights
+* SWAG
+
+==== Ask ====
+
+* Ask people for ideas, feedback, other contributions
+
+* You don't have all the answers
+* Others' ideas could be great
+* Brain storm as a group
+

@@ -1,0 +1,79 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Welcome to the Arquillian Universe
+
+    link(rel='stylesheet', type='text/css', href='build/build.css')
+    link(href='http://fonts.googleapis.com/css?family=Marvel:400,400italic,700,700italic|Oswald:400,300,70' rel='stylesheet' type='text/css')
+
+  body
+
+    article
+
+      section
+        img(src="images/arquillian_logo_600px.svg")
+        h1 Universe
+        em Jason Porter
+        | 2014-09-18
+
+      section
+        h2
+          b Core
+          | Principals
+
+      section(class="principle")
+          h1 
+            b 1
+          h2 Tests should be
+          h3(class="project") portable across compatible environments
+
+      section(class="principle")
+          h1 
+            b 2
+          h2 Tests should be
+          h3(class="project") executable from both IDE and build tool
+
+      section(class="principle")
+          h1 
+            b 3
+          h2 The platform should
+          h3(class="project") reuse existing frameworks and tools
+
+      section
+        h2 Containers
+        br
+        ul
+          li JBoss EAP
+          li Wildfly / JBoss AS
+          li Tomcat / TomEE
+          li Websphere
+          li WebLogic
+          li OSGi
+          li Jetty
+          li Glassfish
+          li Resin
+          li CDI
+          li <a href="http://arquillian.org/modules/">More ...</a>
+
+      section
+        h2 Extensions 
+        ul
+          li REST
+          li Warp
+          li Drone
+          li APE
+          li Spring
+          li Transaction
+          li Droid / iOS
+        p
+          a(href="http://arquillian.org/modules/") More than you can shake a 10' pole at
+
+      section
+        h2 <a href="https://github.com/richfaces/richfaces/blob/master/components/rich/src/test/integration/org/richfaces/component/menu/ITDropDownMenuItem.java" target="_blank"><b>Warp</b> EXAMPLE</a>
+
+      section
+        h1 Welcome to the Arquillian Universe
+
+    script(src='build/build.js')
