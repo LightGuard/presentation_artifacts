@@ -1,0 +1,502 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Precompiled Stylesheets the Sassy Way
+    link(href='http://fonts.googleapis.com/css?family=Dosis:400,700|Bad+Script|Architects+Daughter', rel='stylesheet', type='text/css')
+    link(rel='stylesheet', type='text/css', href='build/main.css')
+  body
+    article
+      section.title
+        h1 Precompiled Stylesheets the Sassy Way
+        footer
+          span(class="author") Jason Porter, @lightguardjp
+
+      section.topic.question(data-bespoke-fx-transition="fall")
+        h2 Why do we need a preprocessor?
+
+      section.topic(data-bespoke-fx-transition="fall")
+        h2 CSS can be 
+          strong difficult
+
+      section.question
+        h2 It grows
+
+      section.large-listing
+        h2 How big are your stylesheets? 
+        ul
+          li 300 lines? 
+          li 1k? 
+          li 10k?
+          li I get coffee while it loads
+
+      section
+        h2 There's no flow control
+        ul
+          li It would be great if...
+          li ... else ...
+          li Each of these things...
+
+      section
+        h2 Repetition
+        ul
+          li A round button is a button, but I have to repeat css or classes
+
+      section
+        h2 Hard to remember
+        ul
+          li Which order is correct for background again?
+
+      section
+        h2 No variables
+        ul
+          li CTRL-F 16px
+          li Results: 50
+
+      section
+        h2 No Math
+        ul
+          li 50px + 10px = Syntax error
+
+      section
+        h2 Regular CSS example
+        aside
+          | CSS example we'll be converting to sass later.
+
+      section(data-bespoke-fx-transition="move-different-easing") 
+        h2 Preprocessors can help
+
+      section
+        img(src="images/sass-logo.png")
+
+      section
+        h2 DISCLAIMER
+        h3 2 major versions in 2014. 
+        h3 3.3 and 3.4
+        h4: a(href="http://sass-lang.com/documentation/file.SASS_CHANGELOG.html") CHANGELOG
+        h4: a(href="http://sass-lang.com/documentation/file.SASS_CHANGELOG.html") http://sass-lang.com/documentation/file.SASS_CHANGELOG.html
+
+      section.question
+        h2 What does it look like?
+
+      section(data-bespoke-fx-transition="fall") 
+        h2 sass
+        pre
+          code.language-scss.
+            article
+              margin-bottom: 2em
+              .entry-content
+                border-top: 1px solid $grey
+
+      section
+        h2 scss
+        pre
+          code.language-scss.
+            article {
+              margin-bottom: 2em;
+              .entry-content {
+                border-top: 1px solid $grey;
+              }
+            }
+
+      section.question
+        h2 Which should you use?
+
+      section.scatter(data-bespoke-fx-transition="fall")
+        ul
+          li Depends
+          li Most use scss
+          li It's also the default.
+          li sass syntax can be easier/cleaner at times
+
+      section
+        h2 Data types
+        ul
+          li.smaller <strong>numbers</strong> (1, .2, 13, 10px)
+          li.smaller <strong>strings</strong> ("foo", 'bar', baz)
+          li.smaller string interpolation: ("\#{$variable}-text")
+          li.smaller <strong>colors</strong> (blue, #000, rgba(255,255,0,0.5))
+          li.smaller <strong>boolean</strong> (true, false)
+
+      section
+        h2 Data types (cont)
+        ul
+          li.smaller <strong>nulls</strong> (null)
+          li.smaller <strong>lists</strong> (1.5em 1em 0 2em, Arial, sans-serif)
+          li.smaller <strong>maps</strong> ( $map: (key1: value1, key2: value2i) )
+
+      section
+        h2 variables
+        pre
+          code.language-scss.
+            $white = #000;
+            $width = 600px;
+            $link-color: blue;
+            $heading-font = 'Comic Sans';
+
+      section
+        h2 variables (cont)
+        pre
+          code.language-scss.
+            $link-color: blue;
+            a {
+              color: $link-color;
+            }
+        pre
+          code.language-scss.
+            a {
+              color: blue;
+            }
+
+      section
+        h2 variable defaults
+        h3 Use the !default flag at the end.
+
+      section.large-listing
+        h3 variable defaults
+        pre
+          code.smaller.language-scss.
+            $content: "First content";
+            $content: "Second content?" !default;
+            $new_content: "First time reference" !default;
+            #main {
+              content: $content;
+              new-content: $new_content;
+            }
+        pre
+          code.language-scss.
+            #main {
+              content: "First content";
+              new-content: "First time reference";
+            } 
+
+      section
+        h2 Time to refactor our CSS!
+        aside
+          | Introduction to sass cli.
+          | sass for ruby and libsass for others
+
+      section
+        h2 logic
+        ul
+          li 
+            | < > <= => == !=
+          li @if, @else, @elseif
+          li and or
+
+      section
+        pre
+          code.language-scss.
+            @if $style  == "block" {
+              display; block;
+              margin: 0;
+            } @else {
+              display: inline;
+              margin: 1em;
+            } 
+
+      section
+        h2 Math
+        ul
+          li repects units
+          li works how you expect
+          li <strong>except</strong> for division
+
+      section
+        pre
+          code.language-scss.
+            $base: 20px
+            1em + 1em;  // 2em
+            1in + 72pt; // 2in
+            $base * 4;  // 80px
+            18  % 5;    // 3
+
+            font : 18px / 1.45em; // 18px/1.45em WARNING
+            font : (20px / 5);    // 4px
+            font : 20px / 5 + 1;  // 5px
+            font : $base / 5;     // 4px
+            $size: 20px / 5;      // 4px
+
+      section.large-listing
+        h3 maths
+        pre
+          code.language-scss.
+            $container : 960px;
+            $main : 680px;
+            $gutter : 30px;
+            #sidebar {
+              width: $container - $main - $gutter;
+            }
+        pre
+          code.language-scss.
+            #sidebar { width: 250px; }
+
+      section
+        h2 Number functions
+        pre
+          code.language-scss.
+            percentage(13/25) // 52%
+            round(2.4)        // 2
+            ceil(2.2)         // 3
+            floor(2.6)        // 2
+            abs(-24)          // 24
+
+      section
+        h2 looping
+        ul
+          li @for
+          li @each
+          li @while -- not used much
+
+      section
+        h2 @for
+        h3 Two forms:
+        pre
+          code.language-scss.
+            @for $var from &lt;start> through &lt;end>
+            @for $var from &lt;start> to &lt;end>
+
+      section
+        h2 @for
+        pre
+          code.language-scss.
+            @for $i from 1 through 3 {
+              .item-#{$i} { width: 2em * $i; }
+            }
+        pre
+          code.language-scss.
+            .item-1 { width: 2em; }
+            .item-2 { width: 4em; }
+            .item-3 { width: 6em; }
+
+      section
+        h2 @each
+        pre
+          code.language-scss.
+            @each $var in &lt;list or map>
+
+      section.large-listing
+        h2 @each
+        pre
+          code.smaller.language-scss.
+            @each $animal in puma, sea-slug, egret, salamander {
+              .\#{$animal}-icon {
+                background-image: url('/images/\#{$animal}.png');
+              }
+            }
+        pre
+          code.smaller.language-scss.
+            .puma-icon { background-image: url('/images/puma.png'); }
+            .sea-slug-icon { background-image: url('/images/sea-slug.png'); }
+            .egret-icon { background-image: url('/images/egret.png'); }
+            .salamander-icon { background-image: url('/images/salamander.png'); }
+
+      section.large-listing
+        h2 @while
+        pre
+          code.smaller.language-scss.
+            $i: 6;
+            @while $i > 0 {
+              .item-\#{$i} { width: 2em * $i; }
+              $i: $i - 2;
+            }
+        pre
+          code.smaller.language-scss.
+            .item-6 { width: 12em; }
+            .item-4 { width: 8em; }
+            .item-2 { width: 4em; }
+
+      section
+        h2 Refactor a bit more
+
+      section
+        h2 nesting
+        pre
+          code.language-scss.
+            article {
+              border-top: 1px dashed #eee;
+              header { margin-bottom: 1.5em; }
+            }
+        pre
+          code.language-scss.
+            article { border-top: 1px dashed #eee; }
+            article header { margin-bottom: 1.5em; }
+
+      section
+        h2 nesting (cont)
+        pre
+          code.language-scss.
+            article {
+              header, section { margin-bottom: 1.5em; }
+            }
+        pre
+          code.language-scss.
+            article header, article section {
+              margin-bottom: 1.5em;
+            }
+
+      section.large-listing
+        h2 nesting (symbol selectors)
+        pre
+          code.smallest.language-scss.
+            article {
+              > h2 { border-top: 1px dashed #eee }
+              ~ article { padding-top: 1.5em }
+              + footer { margin-top: 0 }
+            }
+        pre
+          code.smaller.language-scss.
+            article > h2 { border-top:1px dashed #eee }
+            article ~ article { padding-top: 1.5em }
+            article + footer { margin-top: 0 }
+
+      section.large-listing
+        h2 Parent Selector
+        pre
+          code.language-scss.
+            a {
+              color: blue;
+              &:hover { color: red }
+              display: inline-block;
+              line-height: 1.8em;
+            }
+        pre
+          code.smaller.language-scss.
+            a { color: blue; display: inline-block; line-height: 1.8em; }
+            a:hover { color: red }
+
+      section
+        h2 Awesome new selector functions in 3.3 and 3.4
+        h3 I don't have time to cover everything
+        h3 See the CHANGELOG for more info
+
+      section
+        h2 mixins
+        ul
+          li Reusable chunks of css
+          li No output if unused
+          li May contain arguments
+
+      section
+        h2 basic mixin
+        pre
+          code.language-scss.
+            @mixin hover-link {
+              text-decoration: none;
+              &:hover { text-decoration: underline; }
+            }
+            nav a { @include hover-link; }
+        pre
+          code.language-scss.
+            nav a { text-decoration: none; }
+            nav a:hover { text-decoration: underline; } 
+
+      section.large-listing
+        h2 mixin with args
+        pre
+          code.smaller.language-scss.
+            @mixin border-radius($amount) {
+              -webkit-border-radius: $amount;
+                 -moz-border-radius: $amount;
+                      border-radius: $amount;
+            }
+            .msg { @include border-radius(5px); }
+        pre
+          code.smaller.language-scss.
+            .msg { -webkit-border-radius: 5px; 
+                      -moz-border-radius: 5px; border-radius: 5px;
+            }
+
+      section.large-listing
+        h2 defaults and named args
+        pre
+          code.language-scss.
+            @mixin link-color($text:blue, $hover:red) {
+              color: $text;
+              &:hover { color: $hover; }
+            }
+            a { @include link-colors($hover: green); }
+        pre
+          code.language-scss.
+            a { color: blue; }
+            a:hover { green; }
+
+      section.large-listing
+        h2 @content
+        pre
+          code.language-scss.
+            @mixin apply-to-ie6-only {
+              * html { @content; }
+            }
+            @include apply-to-ie6-only {
+              #logo { background-image: url(/logo.gif); }
+            }
+        pre
+          code.language-scss.
+            * html #logo { background-image: url(/logo.gif); }
+
+      section
+        h2 @import
+        ul
+          li extends CSS @import
+          li by default looks for sass file
+          li may fall back to css import
+          li multiples on one statement
+
+      section
+        h2 colors
+        ul
+          li Who likes playing with colors?
+          li: a(href="http://jackiebalzer.com/color") http://jackiebalzer.com/color
+
+      section
+        h2 custom functions
+        pre
+          code.language-scss.
+            @function pxem($px, $context: 16px) {
+              @return ($px / $context) * 1em;
+            }
+
+            article h2 { font-size: pxem(45px); }
+        pre
+          code.language-scss.  
+            article h2 { font-size: 2.813em; }
+
+      section.large-listing
+        h2 all together
+        pre
+          code.smaller.language-scss.
+            @function text-contrast($bg, $light:#fff, $dark:#000) {
+              $darkbg: lightness($bg) < lightness(gray);
+              @return if($darkbg, $light, $dark);
+            }
+            @mixin easy-button($bg) {
+              color: text-contrast($bg);
+              background: linear-gradient(
+              lighten($bg, 8), darken($bg, 8));
+            }
+            button { @include easy-button(blue); }
+
+      section.large-listing
+        h2 all together
+        pre
+          code.smaller.language-scss.
+            button {
+              color: #fff;
+              background: linear-gradient(#2929ff, #0000d6);
+            }
+
+      section
+        h2 One last refactor pass
+
+      section
+        h3 Sass ecosystem
+        ul
+          li.smaller: a(href="http://compass-style.org/") http://compass-style.org/
+          li.smaller: a(href="http://bourbon.io/") http://bourbon.io/
+          li.smaller: a(href="http://sass-lang.com/libsass") http://sass-lang.com/libsass
+          li.smaller: a(href="http://compass.kkbox.com/") http://compass.kkbox.com/
+          li.smaller: a(href="http://mhs.github.io/scout-app/") http://mhs.github.io/scout-app/
+
+    script(src='build/build.js')

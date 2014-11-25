@@ -1,0 +1,7 @@
+{
+  "name": "presentation-precompiled-stylesheets-the-sassy-way",
+  "version": "0.0.0",
+  "dependencies": {
+    "prism": "gh-pages"
+  }
+}
