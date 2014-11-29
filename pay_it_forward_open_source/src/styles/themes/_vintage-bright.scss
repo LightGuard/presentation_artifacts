@@ -1,0 +1,49 @@
+// <link href='http://fonts.googleapis.com/css?family=Lato:400,700|Noto+Serif:400,700|Comfortaa:700' rel='stylesheet' type='text/css'>
+
+$color1: #CDCDAA;
+$color2: #009DB0;
+$color3: #8EA916;
+$color4: rgb(255, 60, 50);
+$color5: #575757;
+
+body {
+  background: $color1;
+  color: $color5;
+  font-family: 'Lato', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Comfortaa', cursive;
+}
+
+strong, b, i, em, dt {
+  font-family: 'Noto Serif', serif;
+  color: $color5;
+}
+
+h1 {
+  color: $color4;
+}
+
+h2 {
+  color: $color3;
+}
+
+h3 {
+  color: $color2;
+}
+
+blockquote {
+  padding: 0 0 0 15px;
+  margin: -10px 2em 0 2em;
+  font-size: 4rem;
+  & img {
+    float:left;
+    padding-right: 1rem;
+    clear: both;
+  }
+}
+
+.small {
+  font-size: 1rem;
+}

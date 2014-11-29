@@ -1,0 +1,115 @@
+= Pay it Forward: Open Source
+Jason Porter
+2014-11-25
+
+With the recent vulnerabilities discovered in Open Source projects such as
+HeartBleed, Shellshock, and POODLE there's a push towards more Open Source
+contributions from companies and people using Open Source. How can you or your
+company give back to Open Source? Maybe you're not a developer or it's too
+difficult to get started coding. Don't worry, there's always other ways to
+contribute to Open Source besides coding! 
+
+== Same page?
+
+== Pay it forward
+
+an expression for describing the beneficiary of a good deed repaying it to others instead of to the original benefactor.
+
+== Open Source
+
+* http://heartbleed.com/heartbleed.png
+* http://www.symantec.com/connect/sites/default/files/users/user-30201/SSLv3_poodle-300px.png (http://www.symantec.com/connect/blogs/ssl-30-vulnerability-poodle-bug-aka-poodlebleed)
+* Shellshock
+
+[quote, James Whitehurst]
+"Great things — ideas, inventions, innovations — are born of contribution and collaboration. Therefore, the best technology comes from the input of many individuals working toward a common goal."
+
+== What is it?
+
+* http://opensource.org/osd
+* http://opensource.org/osd-annotated
+* http://upload.wikimedia.org/wikipedia/commons/c/ca/What_is_Open_Source_explained_in_LEGO.ogv
+
+=== It doesn't have to be free
+
+=== How does it work?
+
+[quote, Latin Proverb]
+"A heap is made from grains." 
+
+=== Why does it work?
+
+[quote, Linus Torvalds]
+"In open source, we feel strongly that to really do something well, you have to get a lot of people involved."  
+
+"LinuxCon Europe Linus Torvalds 03" by Krd - Own work. Licensed under Creative Commons Attribution-Share Alike 4.0 via Wikimedia Commons - http://commons.wikimedia.org/wiki/File:LinuxCon_Europe_Linus_Torvalds_03.jpg#mediaviewer/File:LinuxCon_Europe_Linus_Torvalds_03.jpg
+
+=== Who uses it?
+
+== Contribution
+
+[quote, Woodrow Wilson]
+"We are not here merely to make a living. We are here to enrich the world." 
+
+=== What does it mean to contribute?
+
+* http://www.merriam-webster.com/dictionary/contribution 
+* um, nope (https://www.flickr.com/photos/55984616@N00/5947497009/sizes/o/)
+* http://www.merriam-webster.com/dictionary/contributing?show=0&t=1416950549
+
+=== Why contribute?
+
+[quote, Steven Presfield]
+"Don't cheat the world of your contribution. Give it what you've got."
+
+* https://www.flickr.com/photos/hale_popoki/91774875 -- happiness / warm fuzzy
+* help yourself
+* help others
+* be a good person
+* part of your job 
+
+=== Ways of contributing
+
+* Code
+* Documentation
+* Bug reporting
+
+[quote, Eric S. Raymond, Linus's Law, http://www.catb.org/esr/writings/homesteading/cathedral-bazaar/index.html]
+Given enough eyeballs, all bugs are shallow.
+
+http://commons.wikimedia.org/wiki/File%3AEric_S_Raymond_portrait.jpg
+By Erc_S_Raymond_and_company.jpg: jerone2 derivative work: Bilby (Erc_S_Raymond_and_company.jpg) [CC-BY-SA-2.0 (http://creativecommons.org/licenses/by-sa/2.0)], via Wikimedia Commons
+
+* Monetary donations
+* Technical Support
+* Evangelisation
+
+[quote, Tim O'Reilly]
+"Empowerment of individuals is a key part of what makes open source work, since in the end, innovations tend to come from small groups, not from large, structured efforts."
+
+"Tim O'Reilly - PayPal X Innovate 2009 - 4" by Brian Solis - originally posted to Flickr as PayPal X INNOVATE 2009 - Tim O'Reilly. Licensed under Creative Commons Attribution 2.0 via Wikimedia Commons - http://commons.wikimedia.org/wiki/File:Tim_O%27Reilly_-_PayPal_X_Innovate_2009_-_4.jpg#mediaviewer/File:Tim_O%27Reilly_-_PayPal_X_Innovate_2009_-_4.jpg
+
+** Talks
+** Blogs
+** Watercooler talk
+* Legal Services
+* Artwork
+* Security audit
+* Using it
+
+=== How to start contributing
+
+. Find a project
+. Look
+.. Web site
+.. Bug tracker
+.. Forums / SO
+.. Wiki
+. Ask
+. Do
+. Submit
+. Repeat 
+
+== Last thing
+
+Open Source does so much for you. It powers your phones, your computers, the internet, allows you pay your bills. Isn't it about time to give back?
