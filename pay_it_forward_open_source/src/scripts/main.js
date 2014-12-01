@@ -9,7 +9,7 @@ var bespoke = require('bespoke'),
   hash = require('bespoke-hash');
 
 // Bespoke.js
-bespoke.from('article', [
+window.slide_deck = bespoke.from('article', [
   classes(),
   bullets('li, .bullet'),
   keys(),

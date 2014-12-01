@@ -1,0 +1,126 @@
+= Precompiled Stylesheets the Sassy Way Demo
+Jason Porter <lightguard.jp@gmail.com>
+
+== First showing
+
+. show the css
+. pull up the p section
+
+== First Refactor
+
+. install sass `gem install sass`
+. explain sass options
+. `cp stylesheet{.css,.scss}`
+. run `sass --watch stylesheet.scss`
+. pull out variables
++
+* container padding
+* container margin
+* container max width
+* row margin, make it a number, not doing math yet
+* pull out p color, bg-color, padding, margin
++
+. show what happens when you make an error - leave out a `;` somewhere
+
+== Second Refactor
+
+. math for `$row-margin`
+. set `$p-margin` to `$p-paddaing` 
+. create `$max-columns` set to 12
+. change columns to use `@for`, do the same for all
++
+``` scss
+@media (max-width: 480px) {
+  @for $i from 1 to 12 {
+    .col-xs-#{$i} {
+      float: left;
+      width: 100% * ($i / $max-colums);
+    }
+  }
+}
+```
++
+. show the difference between `to` and `through` if for loop
+
+== Third Refactor
+
+. Introduce `$settings`
++
+```scss
+$settings (
+  max-width: 800px,
+  columns: 12,
+  margin: 15px,
+  p-padding: 20px,
+  p-color: white,
+  p-background: #9b59b6,
+  breakpoints: (
+    xs: "(max-width: 480px)",
+    sm: "(max-width: 768px) and (min-width: 481px)",
+    md: "(max-width: 1024px) and (min-width: 769px)",
+    lg: "(min-width: 1025px)",
+  )
+);
+```
+. use `$settings`
++
+. create columns mixin
++
+```scss
+@mixin columns($key, $opts) {
+  $cols: map-get($opts, "columns"); 
+  @for $i from 1 through $cols {
+    .col-#{$key}-#{$i} {
+      float: left;
+      width: 100% * ($i / $cols);
+    }
+  }
+}
+```
++
+. use columns mixin
+. create media mixin
++
+```scss
+@mixin media($query) {
+  @media #{$query} {
+    @content
+  }
+}
+```
++
+. use the media mixin
++
+```scss
+@each $key, $breakpoint in map-get($settings, 'breakpoints') {
+  @include media($breakpoint) {
+    @include columns($key, $settings);
+  }
+}
+```
++
+. create grid mixin
++
+```scss
+@mixin grid($opts) {
+  .container {
+    padding: 0 map-get($opts, 'margin');
+    margin: 0 auto;
+    max-width: map-get($opts, 'max-width');
+  }
+  row {
+    margin: 0 map-get($opts, 'margin') * -1;
+  } 
+  @each $key, $breakpoint in map-get($opts, 'breakpoints') {
+    @include media($breakpoint) {
+      @include columns($key, $opts);
+    }
+  }
+}
+```
++
+. use grid mixin: `@include grid($settings);`
+
+
+
+

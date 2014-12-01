@@ -1,0 +1,32 @@
+@mixin columns($key, $opts) {
+  $cols: map-get($opts, "columns"); 
+  @for $i from 1 through $cols {
+    .col-#{$key}-#{$i} {
+      float: left;
+      width: 100% * ($i / $cols);
+    }
+  }
+}
+
+@mixin media($query) {
+  @media #{$query} {
+    @content
+  }
+}
+
+@mixin grid($opts) {
+  .container {
+    padding: 0 map-get($opts, 'margin');
+    margin: 0 auto;
+    max-width: map-get($opts, 'max-width');
+  }
+  row {
+    margin: 0 map-get($opts, 'margin') * -1;
+  } 
+  @each $key, $breakpoint in map-get($opts, 'breakpoints') {
+    @include media($breakpoint) {
+      @include columns($key, $opts);
+    }
+  }
+}
+

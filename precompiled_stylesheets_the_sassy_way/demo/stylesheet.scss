@@ -1,0 +1,26 @@
+@import 'grid';
+
+$settings: (
+  max-width: 800px,
+  columns: 12,
+  margin: 15px,
+  p-padding: 20px,
+  p-color: white,
+  p-background: #9b59b6,
+  breakpoints: (
+    xs: "(max-width: 480px)",
+    sm: "(max-width: 768px) and (min-width: 481px)",
+    md: "(max-width: 1024px) and (min-width: 769px)",
+    lg: "(min-width: 1025px)",
+  )
+); 
+
+@include grid($settings);
+
+p {
+  padding: map-get($settings, 'p-padding');
+  color: map-get($settings, 'p-color');
+  background: map-get($settings, 'p-background');
+  margin: map-get($settings, 'p-padding');
+} 
+
