@@ -1,0 +1,208 @@
+mixin slide(names, slideClasses)
+  - classes = [names, slideClasses]
+  section(class=classes.join(' '))
+    .content
+      block
+
+mixin note
+  sidebar(role='note')
+    block
+
+doctype html
+html
+  head
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+  title Standardized Extension Bulding in Java EE with CDI and JCA
+
+  link(rel='stylesheet', type='text/css', href='build/build.css')
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')
+
+  body
+
+    article.deck
+
+      +slide('title')
+        h1  Standardized Extension Bulding in Java EE with CDI and JCA
+
+      +slide('speaker')
+        .name-plate
+          h1 Jason Porter
+          h2 Senior Sofware Engineer
+        .headshot
+          img(src='images/jason_porter.jpg', alt='Jason Porter', width="300", style="margin-left: -50px; margin-top: -80px;")
+        p.contact
+          i.fa.fa-twitter &nbsp;lightguardjp&nbsp;
+          br
+          | jporter@redhat.com
+        +note
+          :markdown
+            I'm Jason Porter, Senior Software Engineer at Red Hat.
+            I've worked on Seam 3, Apache DeltaSpike, JBoss Forge, Arquillian, and currently the Red Hat Developer experience.
+
+      +slide('image-caption john')
+        h1 Meet John
+        +note
+          :markdown
+            I'd like to introduce John.
+            He is an enterprise developer for a typical larger organization.
+            His employer makes use of Java EE for the majority of their day-to-day business.
+
+      +slide('john johns-assignement image-caption')
+        h1 Work++
+
+      +slide('john johns-assignement image-caption')
+        p Process newly delivered inventory
+
+        +note
+          :markdown
+            He's been tasked with a new assignment related to processing new inventory delivered.
+
+      +slide('john')
+        .quote
+          blockquote
+            | Great, Java EE doesn't interface with our inventory technology, how much time do I have for this??
+
+        +note
+          :markdown
+            He is thinking "Great, Java EE doesn't interface with our inventory technology, how much time do I have for this??" 
+
+      +slide('kind-a-blue')
+        .quote
+          blockquote "If only Java EE did .........."
+          cite EVERYONE here
+
+        +note
+          :markdown
+            Anyone here in a similar spot thinking "if only Java EE did ______"?
+            That's a common concern, especially when you are having to interface with different systems.  
+
+      +slide('kind-a-blue')
+        .topic
+          h1 Java EE already has that!
+
+      +slide('kind-a-blue')
+        .topic
+          h1 Kinda
+
+      +slide('kind-a-blue')
+        h2 if you <b>extend</b> the platform
+
+      +slide
+        img(src="images/45069827.jpg")
+
+      +slide('topic')
+        h1 JCA
+        h2 Java <br> Connector <br> Architecture
+
+        +note
+          :markdown
+            Fortunately Java EE already has a power mechanism out of the box that can help with this: Java Connector Architecture or JCA!
+            It probably doesn't provide an interface directly out of the box for what you need to do, but we can extend Java EE.
+
+      +slide('kind-a-blue')
+        h1 You've probably used it before
+
+      +slide('kind-a-blue')
+        h1 
+          b JMS
+
+        +note
+          :markdown
+            All JMS integrations use JCA, but it goes much farther than messages.
+
+      +slide('kind-a-blue')
+        h1 Resource Services
+        ul
+          li Connection Management
+          li Transaction Management
+          li Security
+          li Life cycle
+          li Work Management 
+          li Message inflow
+
+        +note
+          :markdown
+            TODO
+
+      +slide('john-work image-caption')
+        h1 Back to John
+
+        +note
+          :markdown
+            John has made the decision to go with something simple.
+            The handhelds out on the inventory floor can be synced up and then drop a CSV to the network share, that seems like a pretty simple solution.
+            He wonders how best to be notified of an inventory drop.
+            Should polling be used?
+            Can Java listen to the filesystem?
+
+      +slide
+        img(src="images/live-demo-meme.jpg")
+
+      +slide('filesystemwatch-connector-github')
+        h2 
+          i.fa.fa-github /robertpanzer/filesystemwatch-connector
+
+      +slide('kind-a-blue topic')
+        h1 Testing 
+
+      +slide('arquillian') 
+
+      +slide('kind-a-blue')
+        h1 Shameless book plug
+        img(src="images/arquillian_in_action_cover.jpg" alt="Arquillian In Action" height="225")
+
+      +slide('kind-a-blue')
+        .center
+          h1 <em>Arquillian</em> eases pain when <b>testing within a container</b>
+
+      +slide('john image-caption')
+        h1 Work<em>++</em>
+
+      +slide
+        img(src="images/Now-That-You-Have-That-Feature-Done-I-Want-It-To-Do-Something-Else-Instead-Web-Developer-Meme.jpg")
+
+      +slide('john-work image-caption')
+        h1 Add <b>JMX</b> metrics
+
+      +slide('john')
+        .quote
+          blockquote
+            | How else can I extend Java EE? I want to write <b>less</b> code, not more.
+
+      +slide('topic')
+          h1 CDI
+          h2 Contexts and <br> Dependency <br> Injection
+
+      +slide('cdi-lifecycle')
+
+      +slide
+        .center
+          img(src="images/deltaspike-logo.png" alt="Apache DeltaSpike")
+
+      +slide('kind-a-blue')
+        .center
+          h1 JMX beans with Apache DeltaSpike
+
+        +note
+          :markdown
+            Go back to the code to show it
+
+      +slide('john-work image-caption')
+        h1 What's next?
+
+      +slide('kind-a-blue')
+        .center
+          h1 
+            b Questions
+
+      +slide('creds')
+        h1 Image Creds
+        a(href="www.vectoropenstock.com") Vector Open Stock
+        a(href="https://www.flickr.com/photos/jinterwas/5132649109/in/photolist-8PyaLa-q727tP-oU6jAn-fnif8K-b8Ldrn-bhY8Qz-p4EPtB-aDuPy4-9QP4Vv-gV4JgW-nGA1cN-dtSgCC-dbWmGZ-hjtV6n-amXUaV-94E5sT-efEwnW-pqpVG4-dv7fEr-72HRt4-xo5tW4-dbWo2q-fnwKFL-7cARxj-bVfyvh-9r4ZrE-xhFQtg-7rbzoD-mSFxBx-drfLbp-8Z7SPd-nCCqQA-cEq6d1-d9hXBu-9NpB37-dwwd77-dv7fpH-bVfyGm-an1JmA-5PzPBo-o3677z-dh83dG-8UbywV-d9i4tU-d9hWVs-d9jQkC-d9hYd9-d9hSt7-d9hZvC-d9hLM7/") Kind-a-Blue #1 -- jinterwas
+        a(href="https://www.flickr.com/photos/wiredforsound23/6948090750/in/photolist-bzYMj7-bqMmjo-yZsKx-bzPnas-2DTEpe-dZeLov-bKQmnk-cStVUb-8RftAw-f3JXhC-6piyQR-bCuiBj-cStW19-bTJsji-9wimAG-dW7JJx-ec5R6i-dcK8qY-efUrQV-dcK5WX-5TVUG9-HATF9-8T7vcE-974Nqn-5m8k6X-94EcJg-bCfUFZ-e5Sj3n-ee1dK8-f8kESr-dRobZv-jK3VnF-jK6a2u-BomgD-cJfjEL-jK67nm-bMUsMr-5m8k6V-5b69Au-4mtwzA-Gfz4i-iNmvEe-Gfz4g-7uBLsN-7At8vF-cSt4pm-7sxfxD-8JMvMz-7GG1Yu-nNKfqX") LEGO Collectible Minifigures Series 7 : Computer Programmer -- wiredforlego
+        a(href="https://www.flickr.com/photos/brickpimp/8453569593/in/photostream/") LEGO Minifigure - Serie 7 - No. 12 - Computer Programmer -- Ewald Straßmann 
+        a(href="https://www.flickr.com/photos/24996487@N05/4884927529") front to background by cultiv8_framed_2560x1600 -- evert-jan van scherpenzeel
+
+
+    script(src='build/build.js')
