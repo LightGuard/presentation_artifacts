@@ -120,6 +120,8 @@ $settings (
 ```
 +
 . use grid mixin: `@include grid($settings);`
+. create new _grid.scss file
+. include _grid file
 
 
 
