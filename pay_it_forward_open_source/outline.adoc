@@ -9,7 +9,15 @@ company give back to Open Source? Maybe you're not a developer or it's too
 difficult to get started coding. Don't worry, there's always other ways to
 contribute to Open Source besides coding! 
 
+== The question people are asking
+
+How do we make it better?
+
+Quote from Jim. It takes everyone to make it better. We're a community.
+
 == Same page?
+
+Get some definitions together.
 
 == Pay it forward
 
@@ -17,27 +25,38 @@ an expression for describing the beneficiary of a good deed repaying it to other
 
 == Open Source
 
-* http://heartbleed.com/heartbleed.png
-* http://www.symantec.com/connect/sites/default/files/users/user-30201/SSLv3_poodle-300px.png (http://www.symantec.com/connect/blogs/ssl-30-vulnerability-poodle-bug-aka-poodlebleed)
-* Shellshock
+Next is "open source".
 
-[quote, James Whitehurst]
-"Great things — ideas, inventions, innovations — are born of contribution and collaboration. Therefore, the best technology comes from the input of many individuals working toward a common goal."
-
-== What is it?
+=== What is it?
 
 * http://opensource.org/osd
 * http://opensource.org/osd-annotated
+** In a nutshell
 * http://upload.wikimedia.org/wikipedia/commons/c/ca/What_is_Open_Source_explained_in_LEGO.ogv
-
-=== It doesn't have to be free
+** laymen's terms
 
 === How does it work?
 
 [quote, Latin Proverb]
 "A heap is made from grains." 
 
+Like in the video, it all starts with an idea.
+
+That person then starts work on their idea, either on their own or with others.
+
+The idea and the starting work are eventually "released" as open source.
+
+Every contribution, person, idea, help, etc helps build it.
+
 === Why does it work?
+
+It works simply because everyone is trying to build something great.
+
+There may be many different reasons why people help (we'll cover later).
+
+Ultimately it works because people find it enjoyable.
+
+When a lot of people get together, amazing things can happen.
 
 [quote, Linus Torvalds]
 "In open source, we feel strongly that to really do something well, you have to get a lot of people involved."  
@@ -46,29 +65,63 @@ an expression for describing the beneficiary of a good deed repaying it to other
 
 === Who uses it?
 
+Ask question about phones, internet, paying bills, 
+
+Windows 2k/NT TCP/IP stack built using, Linux, Mac OS X
+
+visit opensource.com
+
+Governments (data.gov, Europe, Brazil, healthcare)
+
+Basically it's used everywhere
+
 == Contribution
+
+The heart of the talk! :)
 
 [quote, Woodrow Wilson]
 "We are not here merely to make a living. We are here to enrich the world." 
 
 === What does it mean to contribute?
 
+Let's take a look at some definitions.
+
 * http://www.merriam-webster.com/dictionary/contribution 
 * um, nope (https://www.flickr.com/photos/55984616@N00/5947497009/sizes/o/)
 * http://www.merriam-webster.com/dictionary/contributing?show=0&t=1416950549
+
+That's more of what we're looking for.
+
+Now we know what it is and that there are many different flavors.
 
 === Why contribute?
 
 [quote, Steven Presfield]
 "Don't cheat the world of your contribution. Give it what you've got."
 
-* https://www.flickr.com/photos/hale_popoki/91774875 -- happiness / warm fuzzy
-* help yourself
-* help others
-* be a good person
+Let's look at some of the reasons why people contribute.
+
 * part of your job 
+** Maybe you're a developer who works on open source as their job
+** You use it as part of your job
+* help yourself
+** It all starts as scratching your own itch
+** Solves a problem you have
+** Fixes something you find annoying
+* help others
+** NURU as an example
+** http://openmrs.org/
+** http://en.wikipedia.org/wiki/Open_Source_Ecology
+* https://www.flickr.com/photos/hale_popoki/91774875 -- happiness / warm fuzzy
+** Need I say more?
 
 === Ways of contributing
+
+We now know what open source is, we know what contribution is, and we know why to do it. Now let's look at the how.
+
+These are ordered in most obvious (to get them out of the way) to least obvious.
+
+I'm sure you'll all find something here that will work for you
 
 * Code
 * Documentation
@@ -82,6 +135,10 @@ By Erc_S_Raymond_and_company.jpg: jerone2 derivative work: Bilby (Erc_S_Raymond_
 
 * Monetary donations
 * Technical Support
+** Forums
+** Email / mailing lists
+** chat
+** comercial support
 * Evangelisation
 
 [quote, Tim O'Reilly]
@@ -93,22 +150,44 @@ By Erc_S_Raymond_and_company.jpg: jerone2 derivative work: Bilby (Erc_S_Raymond_
 ** Blogs
 ** Watercooler talk
 * Legal Services
+** Patent trolling protection
+** Legal Advice
 * Artwork
+** Most projects understand they need a brand, but few have one
+** Web site work
+** Colors
+** Everything that goes into a brand
 * Security audit
+** Back to heartbleed, shellshock, etc
+** Also goes to bug reporting
+** Being a good citizen in reporting these issues
 * Using it
+** Yep, even simply using it helps Open Source
+** If it isn't being used, then it wasn't worth building
 
 === How to start contributing
 
 . Find a project
-. Look
+** GitHub
+** Bitbucket
+** Source Forge
+** Google
+. Look for ways to help
 .. Web site
 .. Bug tracker
 .. Forums / SO
 .. Wiki
 . Ask
+** Mailing List
+** Email maintainers
+** chat
 . Do
 . Submit
+** Create an issue so it can be tracked and properly credited
+** Announce it
 . Repeat 
+
+== Any Questions?
 
 == Last thing
 
