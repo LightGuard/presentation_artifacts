@@ -1,0 +1,24 @@
+group 'org.ajug'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.hibernate:hibernate-spatial:5.0.3.Final'
+    compile 'org.hibernate:hibernate-core:5.0.3.Final'
+    compile 'org.hibernate:hibernate-java8:5.0.3.Final'
+    compile 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final'
+    compile 'org.geolatte:geolatte-geom:1.0'
+
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.assertj:assertj-core:3.2.0'
+
+    runtime 'org.hibernate:hibernate-entitymanager:5.0.3.Final'
+    runtime 'org.postgresql:postgresql:9.4-1205-jdbc42'
+}

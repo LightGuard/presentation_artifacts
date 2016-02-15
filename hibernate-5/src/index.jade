@@ -1,0 +1,315 @@
+mixin slide(names, slideClasses)
+  - classes = [names, slideClasses]
+  section(class=classes.join(' '))
+    .content
+      block
+
+mixin note
+  sidebar(role='note')
+    block
+
+doctype html
+html
+  head
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+  link(rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/solarized-dark.min.css")
+  title You.areCurrent?(Hibernate 5)
+
+  link(rel='stylesheet', type='text/css', href='build/build.css')
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')
+
+  body
+
+    article.deck
+
+      +slide('title')
+        h1  You.areCurrent?(Hibernate 5)
+
+      +slide('speaker')
+        .name-plate
+          h1 Jason Porter
+          h2 Senior Sofware Engineer
+        .headshot
+          img(src='images/jason_porter.jpg', alt='Jason Porter', width="300", style="margin-left: -50px; margin-top: -80px;")
+        p.contact
+          i.fa.fa-twitter &nbsp;lightguardjp&nbsp;
+          br
+          | jporter@redhat.com
+        +note
+          :markdown
+            I'm Jason Porter, Senior Software Engineer at Red Hat.
+            I've worked on Seam 3, Apache DeltaSpike, JBoss Forge, Arquillian, and currently the Red Hat Developer experience.  
+      +slide('agenda')
+        h1 Agenda
+        ul
+          li 
+            i.fa.fa-globe 
+            strong Spatial
+          li 
+            img(src="http://www.vectorsland.com/imgd/l12866-java-eps-logo-99090.png" height="50")
+            strong Java 8
+          li 
+            i.fa.fa-bolt
+            strong Misc <br>Enhancements
+          li
+            i.fa.fa-map 
+            strong Migration
+
+      +slide('topic spatial')
+        h1 
+          i.fa.fa-globe 
+        h2 Hibernate <br>Spatial
+
+      +slide('kind-a-blue')
+        h1 What does it do
+        ul
+          li Native support for spatial database types
+          li Extends HQL/JPQL with spatial functions
+
+      +slide('kind-a-blue')
+        h1 Now part of Hibernate proper
+
+      +slide('kind-a-blue')
+        h1 Uses Geolatte now
+
+      +slide('kind-a-blue')
+        h1 GIS Functions
+
+      +slide('kind-a-blue')
+        ul.no-bullets
+          li Disjoint
+          li Touches
+          li Crosses
+          li Within
+          li Overlaps
+          li Contains
+          li Intersects
+          li Postgis &amp;&amp; 
+
+      +slide('topic java8')
+        h1 
+          img(src="http://www.vectorsland.com/imgd/l12866-java-eps-logo-99090.png" height="120")
+        h2 Java 8
+
+      +slide('kind-a-blue')
+        h1 Java 8 Dependency
+        pre
+          code.xml.
+            &lt;dependency>
+              &lt;groupId>org.hibernate&lt;/groupId>
+              &lt;artifactId>hibernate-java8&lt;/artifactId>
+              &lt;version>${hibernate.version}&lt;/Version>
+            &lt;/dependency>
+
+      +slide('kind-a-blue')
+        h1 Sorry, no 
+        ul
+          li lambdas
+          li streams
+          li other awesome language features
+
+      +slide
+        img(src="images/45069827.jpg")
+
+      +slide('kind-a-blue')
+        h1 What we do have
+        ul
+          li JSR 310 support 
+          li Java 5, 6, 7 - Generics (um, duh), blocks autoclose
+
+      +slide('kind-a-blue datetime')
+        <table summary="BasicTypes added by hibernate-java8" border="0" class="data-time-table"><colgroup><col><col><col><col></colgroup><thead><tr><th>Hibernate type (org.hibernate.type package)</th><th>JDBC type</th><th>Java type</th><th>BasicTypeRegistry key(s)</th></tr></thead><tbody><tr><td>DurationType</td><td>BIGINT</td><td>java.time.Duration</td><td>Duration, java.time.Duration</td></tr><tr><td>InstantType</td><td>TIMESTAMP</td><td>java.time.Instant</td><td>Instant, java.time.Instant</td></tr><tr><td>LocalDateTimeType</td><td>TIMESTAMP</td><td>java.time.LocalDateTime</td><td>LocalDateTime, java.time.LocalDateTime</td></tr><tr><td>LocalDateType</td><td>DATE</td><td>java.time.LocalDate</td><td>LocalDate, java.time.LocalDate</td></tr><tr><td>LocalTimeType</td><td>TIME</td><td>java.time.LocalTime</td><td>LocalTime, java.time.LocalTime</td></tr><tr><td>OffsetDateTimeType</td><td>TIMESTAMP</td><td>java.time.OffsetDateTime</td><td>OffsetDateTime, java.time.OffsetDateTime</td></tr><tr><td>OffsetTimeType</td><td>TIME</td><td>java.time.OffsetTime</td><td>OffsetTime, java.time.OffsetTime</td></tr><tr><td>OffsetTimeType</td><td>TIMESTAMP</td><td>java.time.ZonedDateTime</td><td>ZonedDateTime, java.time.ZonedDateTime</td></tr></tbody></table>
+
+      +slide('kind-a-blue')
+        h1 auto closable
+        ul
+          li Session / StatelessSession
+          li SessionFactor
+          li ScrollableResults
+   
+      +slide('kind-a-blue')
+        pre
+          code.java.
+            try (Session session = sessionFactory.openSession ()) {
+              Address address = Session.get (Address.class, id);
+              address.getCity return ();
+            }
+
+      +slide('topic enhancements')
+        h1 
+          i.fa.fa-bolt
+        h2 Misc <br> Enhancements
+
+      +slide('kind-a-blue')
+        h1 Second Level Cache
+        ul
+          li Fewer objects created (key)
+          li Cache by reference
+
+      +slide('kind-a-blue')
+        pre
+          code.java.
+            @Entity @Proxy( lazy = false )
+            @Immutable
+            @Cacheable @Cache( usage = CacheConcurrencyStrategy.READ_ONLY )
+            public class MyReferenceData {
+                @Id
+                private Integer id;
+                private String name;
+                private String theValue;
+                ....
+            }
+
+      +slide('kind-a-blue')
+        h1 OSGi Improvements
+
+      +slide('kind-a-blue')
+        h1 bytecode enhancements
+        ul
+          li Smarter change detection
+          li Better gradle / maven support
+          li Lazy loaded properties
+          li Automatic bi-directional management
+
+      +slide('kind-a-blue')
+        h1 Maven
+
+      +slide('kind-a-blue')
+        pre
+          code.xml.
+            &lt;plugin>
+               &lt;groupId>org.hibernate.orm.tooling&lt;groupId>
+               &lt;artifactId>hibernate-Enhance-maven-plugin&lt;artifactId>
+               &lt;version>${currentHibernateVersion}&lt;version>
+               &lt;executions>
+                   &lt;execution>
+                       &lt;configuration>
+                           &lt;failOnError>true&lt;failOnError>
+                           &lt;enableLazyInitialization>true&lt;enableLazyInitialization>
+                           &lt;enableDirtyTracking>true&lt;enableDirtyTracking>
+                           &lt;enableAssociationManagement>true&lt;enableAssociationManagement>
+                       &lt;configuration>
+                       &lt;goals>
+                           &lt;goal>enhance&lt;goal>
+                       &lt;goals>
+                   &lt;execution>
+               &lt;executions>
+            &lt;plugin> 
+
+      +slide('kind-a-blue')
+        h1 Gradle
+
+      +slide('kind-a-blue')
+        pre
+          code.groovy.
+            ext {
+                hibernateVersion = 'hibernate-version-you-want'
+            }
+
+            {buildscript
+                {dependencies
+                    classpath "org.hibernate: hibernate-gradle-plugin: $ hibernateVersion"
+                }
+            }
+
+            {hibernate
+                Enhance {
+                    // Any configuration goes here
+                }
+            }
+
+      +slide('kind-a-blue')
+        h1 Lazy loaded Properties
+
+      +slide('kind-a-blue')
+        pre
+          code.java.
+            @Entity
+            public class Customer {
+              @Id
+              private Integer id;
+
+              private String name;
+
+              @Basic(Fetch = FetchType.LAZY)
+              private UUID accountsPayableXrefId;
+
+              @LobBasic(Fetch = FetchType.LAZY)
+              @LazyGroup("Lobs")
+              private Blob image;
+              ...
+            }
+
+      +slide('kind-a-blue')
+        h1 Bi-Directional Association Management
+        h2 Currently
+        pre
+          code.java.
+            Order order = new Order();
+            LineItem lineItem = new LineItem();
+            order.getLineItems().add(lineItem).
+
+            lineItem.getOrder.getName();
+
+      +slide('kind-a-blue')
+        h1 Bi-Directional Association Management
+        h2 With bytecode enhancement
+        pre
+          code.java.
+            Order order = new Order();
+            LineItem lineItem = new LineItem();
+            order.getLineItems().add(lineItem).
+
+            // Normally this would throw NPE
+            lineItem.getOrder.getName();
+
+      +slide('kind-a-blue')
+        h1 Perf Improvements
+        h2 sorry no numbers
+
+      +slide('kind-a-blue')
+        h1 Improvements to GenerateId.AUTO
+
+      +slide('topic migration')
+        h1 
+          i.fa.fa-map
+        h2 Migration
+
+
+      +slide('kind-a-blue')
+        pre
+          code.java.
+            StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder()
+             .configure("org/hibernate/example/MyCfg.xml")
+             .build();
+
+            Metadata metadata = new MetadataSources(standardRegistry)
+              .addAnnotatedClass(MyEntity.class)
+              .addAnnotatedClassName("org.hibernate.example.Customer")
+              .addResource("org/hibernate/example/Order.hbm.xml")
+              .addResource("org/hibernate/example/Product.orm.xml")
+              .getMetadataBuilder()
+              .applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE)
+              .build();
+
+            SessionFactory sessionFactory = metadata.getSessionFactoryBuilder()
+              .applyBeanManager(getBeanManagerFromSomewhere())
+              //CDI BeanManager to the SessionFactory being built
+              .build();
+
+      +slide('kind-a-blue')
+        h1 Naming strategies
+
+      +slide('kind-a-blue')
+        h1 Type handling
+
+
+      +slide('creds')
+        h1 Image Creds
+        a(href="https://www.flickr.com/photos/jinterwas/5132649109/in/photolist-8PyaLa-q727tP-oU6jAn-fnif8K-b8Ldrn-bhY8Qz-p4EPtB-aDuPy4-9QP4Vv-gV4JgW-nGA1cN-dtSgCC-dbWmGZ-hjtV6n-amXUaV-94E5sT-efEwnW-pqpVG4-dv7fEr-72HRt4-xo5tW4-dbWo2q-fnwKFL-7cARxj-bVfyvh-9r4ZrE-xhFQtg-7rbzoD-mSFxBx-drfLbp-8Z7SPd-nCCqQA-cEq6d1-d9hXBu-9NpB37-dwwd77-dv7fpH-bVfyGm-an1JmA-5PzPBo-o3677z-dh83dG-8UbywV-d9i4tU-d9hWVs-d9jQkC-d9hYd9-d9hSt7-d9hZvC-d9hLM7/") Kind-a-Blue #1 -- jinterwas
+        a(href="https://www.flickr.com/photos/24996487@N05/4884927529") front to background by cultiv8_framed_2560x1600 -- evert-jan van scherpenzeel
+    script(src='build/build.js')
+    script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js")
+    script.
+      hljs.initHighlightingOnLoad();

@@ -1,0 +1,423 @@
+= Hibernate you know ... but you did not know
+Emmanuel Bernard
+: Backend: revealjs
+: Revealjs_theme: night
+//: Revealjs_theme: beige
+//: Revealjs_theme: night
+: Revealjs_controls: false
+: Revealjs_progress: false
+: Revealjs_history: true
+: Revealjs_transition: default
+: Source highlighter: highlightjs
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+== Hibernate you know ... but you did not know
+
+Emmanuel Bernard +
+Red Hat
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+== What that withdraw?
+
+* Overview of Hibernate projects
+* New features in version 5
+** How to use these features
+
+* Out with ideas for your applications
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+== Emmanuel Bernard
+
+* Mr Data at JBoss
+* Hibernate, Infinispan, Teiid, Modeshape
+* Podcast http://asylum.jboss.org & https://lescastcodeurs.com
+
+* The rest https://emmanuelbernard.com
+* Link: https: //twitter.com/emmanuelbernard [emmanuelbernard]
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+== Hibernate ORM 5
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+== A cleaner bootstrap
+
+* Modularity
+** Wildfly
+** OSGi
+* Why is modularizes?
+* Lots of problems
+** extension
+** Integration with ORM
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+== Bootstrap
+
+[Source, java]
+----
+StandardServiceRegistry standardRegistry StandardServiceRegistryBuilder = new ()
+         .configure ( "org / hibernate / example / MyCfg.xml")
+         .build ();
+
+Metadata metadata = new MetadataSources (standardRegistry)
+        .addAnnotatedClass (MyEntity.class)
+        .addAnnotatedClassName ( "org.hibernate.example.Customer")
+        .addResource ( "org / hibernate / example / Order.hbm.xml")
+        .addResource ( "org / hibernate / example / Product.orm.xml")
+        .getMetadataBuilder ()
+        .applyImplicitNamingStrategy (ImplicitNamingStrategyJpaCompliantImpl.INSTANCE)
+        .build ();
+
+SessionFactory sessionFactory metadata.getSessionFactoryBuilder = ()
+        .applyBeanManager (getBeanManagerFromSomewhere ())
+        // CDI BeanManager to the SessionFactory Being built
+        .build ();
+----
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+== Java 8
+
+* New Types
+** Date and Time
+* Java 5, 6, 7
+** Generics
+** Blocks autoclose
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+== Date and Time
+
+[Source, xml]
+----
+<Dependency>
+    <GroupId> org.hibernate </ groupId>
+    <ArtifactId> hibernate-java8 </ artifactId>
+    <Version> $ {hibernate.version} </ Version>
+</ Dependency>
+----
+
+* DATE: `java.time.LocalDate`
+* TIME: `java.time.LocalTime`,` java.time.OffsetTime`
+* TIMESTAMP: `java.time.Instant`,` java.time.LocalDateTime`, `and` java.time.OffsetDateTime` java.time.ZonedDateTime`
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+== Generics and AutoClosable
+
+[Source, java]
+----
+try (Session session = sessionFactory.openSession ()) {
+    Address address = Session.get (Address.class, id);
+    address.getCity return ();
+}
+----
+
+* Resources `AutoClosable`
+** Session` `/` StatelessSession`
+** `SessionFactory`
+** `ScrollableResults`
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+== Increase bytecode
+
+* Smarter Change detection
+* Better support Gradle and Maven
+* Late Loads properties
+** Subject groups
+* Automatic bidirectional Management
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+Maven ==
+
+[Source, xml]
+----
+<Plugin>
+    <GroupId> org.hibernate.orm.tooling </ groupId>
+    <ArtifactId> hibernate-Enhance-maven-plugin </ artifactId>
+    <Version> $ {currentHibernateVersion} </ Version>
+    <Executions>
+        <Execution>
+            <Configuration>
+                <FailOnError> true </ FailOnError>
+                <EnableLazyInitialization> true </ enableLazyInitialization>
+                <EnableDirtyTracking> true </ enableDirtyTracking>
+                <EnableAssociationManagement> true </ enableAssociationManagement>
+            </ Configuration>
+            <Goals>
+                <Goal> Enhance </ goal>
+            </ Goals>
+        </ Execution>
+    </ Executions>
+</ Plugin>
+----
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+== Gradle
+
+[Source, groovy]
+----
+ext {
+    hibernateVersion = 'hibernate-version-you-want'
+}
+
+{buildscript
+    {dependencies
+        classpath "org.hibernate: hibernate-gradle-plugin: $ hibernateVersion"
+    }
+}
+
+{hibernate
+    Enhance {
+        // Any configuration goes here
+    }
+}
+----
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+== Properties lazy
+
+[Source, java]
+----
+Entity
+ public class Customer {
+    Id
+    private Integer id;
+
+    private String name;
+
+    Basic (Fetch = FetchType.LAZY)
+    private UUID accountsPayableXrefId;
+
+    LobBasic (Fetch = FetchType.LAZY)
+    LazyGroup ( "Lobs")
+    private Blob image;
+    ...
+}
+----
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+== Management Associations - before
+
+[Source, java]
+----
+Order order = new Order ();
+LineItem LineItem LineItem = new ();
+order.getLineItems () add (LineItem).
+lineItem.setOrder (order);
+
+lineItem.getOrder.getName ();
+----
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+== Management Associations - after
+
+[Source, java]
+----
+Order order = new Order ();
+LineItem LineItem LineItem = new ();
+order.getLineItems () add (LineItem).
+
+lineItem.getOrder.getName ();
+// Without byte code enhancement Would this
+// Throw a NPE in normal use Java
+----
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+== Cache second level
+
+* Fewer objects created (key)
+* Cache by reference
+
+[Source, xml]
+----
+<Property name = "hibernate.cache.use_reference_entries" values ​​= "true" />
+----
+
+[Source, java]
+----
+EntityProxy (Lazy = false)
+@Immutable
+CacheableCache (Use = CacheConcurrencyStrategy.READ_ONLY)
+{public class MyReferenceData
+    Id
+    private Integer id;
+    private String name;
+    private String theValue;
+    ....
+}
+----
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+== Various
+
+* `GeneratedValue (Strategy = AUTO)`
+** UUID, custom strategy
+* Naming strategy
+** Physical and implicit
+* Documentation *
+* Blog
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+== Hibernate Search
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+== Request full-text
+
+* Inverted Index
+Lucene * 5
+* Item Level
+* Clustered
+** Master / Slave
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+== What is new
+
+Lucene * 5
+* Significant enhancements perf
+** Micro batch approach, close perf NRT
+* Backend ElasticSearch
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+An example == "macroservice"
+
+[Source, java]
+----
+EntityIndexedSpatial
+public class Address {
+    Id Integer id;
+
+    field String street1;
+
+    field (Analysis = NO)SortableFieldFacet
+    String city;
+
+    FacetNumericField Int floor;
+
+    LongLatitude latitude;
+    Longitude Long longitude;
+
+    CountryIndexedEmbedded country;
+
+    ...
+}
+----
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+==!
+
+[Source, java]
+----
+QueryBuilder fullTextSession.getSearchFactory b = ()
+        .buildQueryBuilder () forEntity (Address.class) .get ().
+
+org.apache.lucene.search.Query luceneQuery = b
+    .bool ()
+        .must (b
+            .spatial. () within (radius, Unit.KM)
+                .ofLatitude (centerLatitude)
+                .andLongitude (centerLongitude)
+                .createQuery ())
+        .must (b
+            .keyword (). fuzzy ()
+                .onField ( "street1")
+                .matching (street) .createQuery ()
+        )
+        .should (b
+            .tidy()
+                .onField ( "floor"). boostedTo (3)
+                .above (2) .excludeLimit (). CreateQuery ()
+        )
+        .createQuery ();
+----
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+==!
+
+[Source, java]
+----
+FacetingRequest cityFacetRequest = b
+    .facet ()
+        .name ( "cities")
+        .onField ( "city")
+        .discrete ()
+            .orderedBy (FacetSortOrder.FIELD_VALUE)
+        .includeZeroCounts (false)
+        .createFacetingRequest ();
+
+FacetingRequest floorFacetRequest = builder
+    .facet ()
+        .name ( "floors")
+        .onField ( "floor")
+        .tidy()
+            .orderedBy (FacetSortOrder.RANGE_DEFINITION_ORDER)
+            .below (0) .excludeLimit ()
+            .from (0) .to (2) .excludeLimit ()
+            .above (2)
+        .createFacetingRequest ();
+----
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+==!
+
+[Source, java]
+----
+// Create the query
+org.hibernate.Query hibQuery = fullTextSession
+        .createFullTextQuery (luceneQuery, Address.class);
+
+// Create the facets
+FacetManager facetManager fullTextQuery.getFacetManager = ();
+facetManager.enableFaceting (cityFacetRequest);
+facetManager.enableFaceting (floorFacetRequest);
+
+// Get the results
+List results = hibQuery.list ();
+
+// Retrieve the faceting results
+List <Facet> = facetManager.getFacets facets ( "floors");
+----
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+== Hibernate OGM
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+== JPA for NoSQL
+
+* MongoDB (Fongo)
+* Infinispan
+* Neo4j (remote and embedded)
+* Redis
+* ehcache
+* Cassandra
+* CouchDB
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+== The first steps to begin
+
+[Source, xml]
+----
+<Dependencies>
+    <Dependency>
+        <GroupId> org.hibernate.ogm </ groupId>
+        <ArtifactId> hibernate-gmo-Neo4j </ artifactId>
+    </ Dependency>
+</ Dependencies>
+
+<Persistence>
+    <Persistence-unit name = "gmo-Neo4j" transaction-type = "JTA">
+        <- Use Hibernate OGM provider: configuration will be transparent ->
+        <Provider> org.hibernate.ogm.jpa.HibernateOgmPersistence </ provider>
+        <Properties>
+            <Property name = "hibernate.ogm.datastore.provider" value = "Neo4j" />
+        </ Properties>
+    </ Persistence-unit>
+</ Persistence>
+----
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+== Hibernate Envers
+
+[Data-background = "images / desktop_hibernate_1920x1200.jpg"]
+== Q & A
+
+* Try * Hibernate, it is to adopt
+* Contribute (returns, doc, code, hate / love)
+* http://hibernate.org/
+* You have removed what?
