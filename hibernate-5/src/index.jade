@@ -99,7 +99,7 @@ html
             &lt;dependency>
               &lt;groupId>org.hibernate&lt;/groupId>
               &lt;artifactId>hibernate-java8&lt;/artifactId>
-              &lt;version>${hibernate.version}&lt;/Version>
+              &lt;version>${hibernate.version}&lt;/version>
             &lt;/dependency>
 
       +slide('kind-a-blue')
@@ -163,6 +163,10 @@ html
 
       +slide('kind-a-blue')
         h1 OSGi Improvements
+        +note
+          :markdown
+            OSGi improvements started with fixing brittle tests.
+            We have also received contributions from the PAX and Karaf teams to better run in an OSGi environment
 
       +slide('kind-a-blue')
         h1 bytecode enhancements
@@ -179,23 +183,23 @@ html
         pre
           code.xml.
             &lt;plugin>
-               &lt;groupId>org.hibernate.orm.tooling&lt;groupId>
-               &lt;artifactId>hibernate-Enhance-maven-plugin&lt;artifactId>
-               &lt;version>${currentHibernateVersion}&lt;version>
+               &lt;groupId>org.hibernate.orm.tooling&lt;/groupId>
+               &lt;artifactId>hibernate-enhance-maven-plugin&lt;/artifactId>
+               &lt;version>${currentHibernateVersion}&lt;/version>
                &lt;executions>
                    &lt;execution>
                        &lt;configuration>
-                           &lt;failOnError>true&lt;failOnError>
-                           &lt;enableLazyInitialization>true&lt;enableLazyInitialization>
-                           &lt;enableDirtyTracking>true&lt;enableDirtyTracking>
-                           &lt;enableAssociationManagement>true&lt;enableAssociationManagement>
-                       &lt;configuration>
+                           &lt;failOnError>true&lt;/failOnError>
+                           &lt;enableLazyInitialization>true&lt;/enableLazyInitialization>
+                           &lt;enableDirtyTracking>true&lt;/enableDirtyTracking>
+                           &lt;enableAssociationManagement>true&lt;/enableAssociationManagement>
+                       &lt;/configuration>
                        &lt;goals>
-                           &lt;goal>enhance&lt;goal>
-                       &lt;goals>
-                   &lt;execution>
-               &lt;executions>
-            &lt;plugin> 
+                           &lt;goal>enhance&lt;/goal>
+                       &lt;/goals>
+                   &lt;/execution>
+               &lt;/executions>
+            &lt;/plugin> 
 
       +slide('kind-a-blue')
         h1 Gradle
@@ -207,16 +211,15 @@ html
                 hibernateVersion = 'hibernate-version-you-want'
             }
 
-            {buildscript
-                {dependencies
-                    classpath "org.hibernate: hibernate-gradle-plugin: $ hibernateVersion"
-                }
+            buildscript {
+                dependencies
+                classpath "org.hibernate: hibernate-gradle-plugin: $ hibernateVersion"
             }
 
-            {hibernate
-                Enhance {
-                    // Any configuration goes here
-                }
+            hibernate
+              enhance {
+                  // Any configuration goes here
+              }
             }
 
       +slide('kind-a-blue')
@@ -249,6 +252,7 @@ html
             Order order = new Order();
             LineItem lineItem = new LineItem();
             order.getLineItems().add(lineItem).
+            lineItem.setOrder(order); 
 
             lineItem.getOrder.getName();
 
@@ -270,12 +274,28 @@ html
 
       +slide('kind-a-blue')
         h1 Improvements to GenerateId.AUTO
+        ul
+          li.
+            JPA number support
+          li.
+            UUID
+          li.
+            new org.hibernate.boot.model.IdGeneratorStrategyInterpreter extension
 
       +slide('topic migration')
         h1 
           i.fa.fa-map
-        h2 Migration
+        h2 
+          | Migration 
+          br
+          | Small list
 
+      +slide('kind-a-blue')
+        p 
+          a https://github.com/hibernate/hibernate-orm/blob/5.0/migration-guide.adoc
+
+      +slide('kind-a-blue')
+        h1 Bootstrap
 
       +slide('kind-a-blue')
         pre
@@ -302,13 +322,39 @@ html
         h1 Naming strategies
 
       +slide('kind-a-blue')
+        ul
+          li.
+            ImplicitNamingStrategy
+          li.
+            PhysicalNamingStrategy
+
+      +slide('kind-a-blue')
         h1 Type handling
 
+      +slide('kind-a-blue')
+        ul
+          li
+            | Minor package updates
+          li
+            | SqlTypeDescriptor no longer auto-registers
+          li
+            | "big_integer" from java.sql.Types.NUMBERIC to java.sql.Types.BIGINT
+          li
+            | UUID may require explicit <code>@Column(length16)</code>
+          li
+            | EnumType mappings in hbm.xml may need tweaking for name-mapping
 
-      +slide('creds')
-        h1 Image Creds
-        a(href="https://www.flickr.com/photos/jinterwas/5132649109/in/photolist-8PyaLa-q727tP-oU6jAn-fnif8K-b8Ldrn-bhY8Qz-p4EPtB-aDuPy4-9QP4Vv-gV4JgW-nGA1cN-dtSgCC-dbWmGZ-hjtV6n-amXUaV-94E5sT-efEwnW-pqpVG4-dv7fEr-72HRt4-xo5tW4-dbWo2q-fnwKFL-7cARxj-bVfyvh-9r4ZrE-xhFQtg-7rbzoD-mSFxBx-drfLbp-8Z7SPd-nCCqQA-cEq6d1-d9hXBu-9NpB37-dwwd77-dv7fpH-bVfyGm-an1JmA-5PzPBo-o3677z-dh83dG-8UbywV-d9i4tU-d9hWVs-d9jQkC-d9hYd9-d9hSt7-d9hZvC-d9hLM7/") Kind-a-Blue #1 -- jinterwas
-        a(href="https://www.flickr.com/photos/24996487@N05/4884927529") front to background by cultiv8_framed_2560x1600 -- evert-jan van scherpenzeel
+      +slide('kind-a-blue')
+        h1 Hibernate OGM
+
+      +slide('kind-a-blue')
+        h1 Hibernate Search 
+
+      //
+        +slide('creds')
+          h1 Image Creds
+          a(href="https://www.flickr.com/photos/jinterwas/5132649109/in/photolist-8PyaLa-q727tP-oU6jAn-fnif8K-b8Ldrn-bhY8Qz-p4EPtB-aDuPy4-9QP4Vv-gV4JgW-nGA1cN-dtSgCC-dbWmGZ-hjtV6n-amXUaV-94E5sT-efEwnW-pqpVG4-dv7fEr-72HRt4-xo5tW4-dbWo2q-fnwKFL-7cARxj-bVfyvh-9r4ZrE-xhFQtg-7rbzoD-mSFxBx-drfLbp-8Z7SPd-nCCqQA-cEq6d1-d9hXBu-9NpB37-dwwd77-dv7fpH-bVfyGm-an1JmA-5PzPBo-o3677z-dh83dG-8UbywV-d9i4tU-d9hWVs-d9jQkC-d9hYd9-d9hSt7-d9hZvC-d9hLM7/") Kind-a-Blue #1 -- jinterwas
+          a(href="https://www.flickr.com/photos/24996487@N05/4884927529") front to background by cultiv8_framed_2560x1600 -- evert-jan van scherpenzeel
     script(src='build/build.js')
     script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js")
     script.

@@ -15,7 +15,6 @@ var pkg = require('./package.json'),
   opn = require('opn'),
   ghpages = require('gh-pages'),
   path = require('path'),
-  pdf = require('bespoke-pdf'),
   rimraf = require('gulp-rimraf'),
   isDist = process.argv.indexOf('serve') === -1;
 

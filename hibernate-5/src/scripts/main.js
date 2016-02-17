@@ -9,8 +9,7 @@ var bespoke = require('bespoke'),
   overview = require('bespoke-overview'),
   onstage = require('bespoke-onstage'),
   hash = require('bespoke-hash'),
-  nav = require('bespoke-nav'),
-  pdf = require('bespoke-pdf');
+  nav = require('bespoke-nav');
 
 bespoke.from('article.deck', [
   classes(),
@@ -20,8 +19,7 @@ bespoke.from('article.deck', [
   bullets('ul:not(.no-bullets) li, ol:not(.no-bullets) li, .bullet'),
   scale(isWebKit ? 'zoom' : 'transform'),
   backdrop(),
-  hash(),
-  pdf()
+  hash()
 ]);
 
 require('prism');

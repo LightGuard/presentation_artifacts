@@ -28,7 +28,7 @@
     "bespoke-touch": "^1.0.0",
     "bespoke-overview": "^1.0.1",
     "bespoke-nav": "^1.0.1",
-    "bespoke-pdf": "^1.1.3",
+    "bespoke-onstage": "/home/jporter/projects/presentation_artifacts/bespoke-onstage",
     "debowerify": "^0.7.1",
     "gh-pages": "^0.2.0",
     "gulp": "^3.8.1",
