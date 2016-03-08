@@ -16,6 +16,11 @@ window.slide_deck = bespoke.from('article', [
   touch(),
   scale(),
   hash(),
-  fx({transition: 'move'})
+  //fx({
+      //direction: "horizontal",
+      //transition: "move",
+      //reverse: false
+     //}
+    //)
 ]);
 
